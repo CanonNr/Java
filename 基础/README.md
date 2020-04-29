@@ -12,7 +12,7 @@
 
 ## 容器
 
-- [数组、集合、列表区别](基础/容器/数组、集合、列表区别)
+- [List、Set、Array、Map](基础/容器/List、Set、Array、Map)
 
 - Arraylist 与 LinkedList 区别
 
