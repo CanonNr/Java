@@ -19,26 +19,27 @@
 ## 容器
 
 - [List、Set、Queue、Map](基础/容器/List、Set、Queue、Map)
-
 - [容器的两大阵营](基础/容器/容器的两大阵营)
-
-- Arraylist 与 LinkedList 区别
-
-- ArrayList 的扩容机制
-
 - comparable 和 Comparator的区别
+
+### ArrayList
+
+- [ArrayList 与 LinkedList 区别](基础/容器/ArrayList与LinkedList区别)
+- ArrayList 的扩容机制
 
 ### HashMap
 
+- HashMap的底层简述
 - HashMap 的长度为什么是2的幂次方
-
+- HashMap 在 JDK 1.7 和 JDK 1.8 中的区别
+- HashMap 为什么会在长度为 8 的时候链表转红黑树
 - HashMap 和 HashSet区别
-
 - ConcurrentHashMap 和 Hashtable 的区别
-
 - HashMap 和 Hashtable 的区别
 
-- HashMap的底层实现
+
+
+
 
 ## JVM
 
