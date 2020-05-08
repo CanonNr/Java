@@ -27,6 +27,7 @@
 ### List
 
 - [ArrayList 与 LinkedList 区别](基础/容器/ArrayList与LinkedList区别)
+
 - [ArrayList 和 Vector的区别](基础/容器/ArrayList和Vector的区别) 
 
 
@@ -37,6 +38,8 @@
 - [HashMap 简述](基础/容器/HashMap简述)
 
 - [HashMap 的长度为什么是2的幂次方](基础/容器/HashMap的长度为什么是2的幂次方)
+
+- [HashMap 的扩容操作](基础/容器/HashMap的扩容操作)
 
 - HashMap 在 JDK 1.7 和 JDK 1.8 中的区别
 
