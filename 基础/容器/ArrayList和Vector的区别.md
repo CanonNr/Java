@@ -117,7 +117,7 @@ System.out.println(vector);
 
 |          |  ArrayList   |    Vector    |
 | :------: | :----------: | :----------: |
-| 数据结构 |     数组     |     数组     |
+| 存储结构 |     数组     |     数组     |
 |   父类   | AbstractList | AbstractList |
 |   扩容   |    1.5倍     | 默认扩容2倍  |
 |  多线程  |  线程不安全  |   线程安全   |

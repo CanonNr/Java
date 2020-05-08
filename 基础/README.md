@@ -24,7 +24,7 @@
 
 - comparable 和 Comparator的区别
 
-### ArrayList
+### List
 
 - [ArrayList 与 LinkedList 区别](基础/容器/ArrayList与LinkedList区别)
 - [ArrayList 和 Vector的区别](基础/容器/ArrayList和Vector的区别) 
@@ -32,7 +32,7 @@
 
 
 
-### HashMap
+### Map
 
 - [HashMap 简述](基础/容器/HashMap简述)
 
