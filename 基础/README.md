@@ -47,9 +47,8 @@
 
 - HashMap 和 HashSet区别
 
-- ConcurrentHashMap 和 Hashtable 的区别
+- [HashMap、ConcurrentHashMap、Hashtable 的区别](基础/容器/HashMap、ConcurrentHashMap、Hashtable的区别.md)
 
-- HashMap 和 Hashtable 的区别
 
 
 
