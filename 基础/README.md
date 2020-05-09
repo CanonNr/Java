@@ -36,16 +36,12 @@
 ### Map
 
 - [HashMap 简述](基础/容器/HashMap简述)
-
 - [HashMap 的长度为什么是2的幂次方](基础/容器/HashMap的长度为什么是2的幂次方)
-
 - [HashMap 的扩容操作](基础/容器/HashMap的扩容操作)
-
 - HashMap 在 JDK 1.7 和 JDK 1.8 中的区别
-
 - [HashMap 为什么会在长度为 8 的时候链表转红黑树](基础/容器/HashMap为什么会在长度为8的时候链表转红黑树)
 
-- HashMap 和 HashSet区别
+- [HashMap 和 HashSet区别](基础/容器/HashMap和HashSet区别)
 
 - [HashMap、ConcurrentHashMap、Hashtable 的区别](基础/容器/HashMap、ConcurrentHashMap、Hashtable的区别.md)
 
