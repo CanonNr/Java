@@ -1,7 +1,3 @@
-## 什么是扩容
-
-顾名思义就是扩大容量，在实例化时`HashMap`的容量为 16，但是如果数据量越来越大肯定是需要变化的，所以本文主要讲了：什么是时候扩容、扩多少、怎么扩。
-
 ## 核心字段
 
 在`Hashmap`中有几个字段还是必须要了解的
@@ -17,6 +13,9 @@ int modCount;  			  // 一个计数器
 int size;  				 // 当前容量
 ```
 
+## 什么是扩容
+
+顾名思义就是扩大容量，在实例化时`HashMap`的容量为 16，但是如果数据量越来越大肯定是需要变化的
 
 
 ## 什么时候扩容
@@ -148,7 +147,7 @@ final Node<K,V>[] resize() {
                 // 此时已经有了 e ，所以就不需要 oldTab[j]了
                 oldTab[j] = null;
                 // 提醒一下 HashMap 的三种 存储结构 数组 链表 红黑树
-                // 如果没有下一个节点 
+                // 如果只有一个元素 没有下一个节点 
                 if (e.next == null)
                     // 直接将e 赋值给新的容器
                     // 通过之前说的 位运算 得出数组的下标
@@ -158,12 +157,15 @@ final Node<K,V>[] resize() {
                     // todo
                     ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
                 else { 
-                    // 链表结构
+                    // 非树结构 也就是长度小于8的链表
+          		   // 此处会用到[为什么是2的n次幂]另一个优点 : 扩容后快速定位新的下标
+                    // 【元素的位置要么是在原位置，要么是在原位置再移动2次幂的位置】
                     Node<K,V> loHead = null, loTail = null;
                     Node<K,V> hiHead = null, hiTail = null;
                     Node<K,V> next;
                     do {
                         next = e.next;
+                        
                         if ((e.hash & oldCap) == 0) {
                             if (loTail == null)
                                 loHead = e;
@@ -193,4 +195,30 @@ final Node<K,V>[] resize() {
     }
     return newTab;
 ```
+
+
+
+## 怎么扩
+
+至于怎么扩源码写写得很清楚了
+
+```java
+// 首次扩容 容量由 0 -> 默认值 16 直接赋值
+newCap = DEFAULT_INITIAL_CAPACITY;
+newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+
+```
+
+
+
+```java
+// 非首次扩容 则用到了
+// 在符合要求后 进行扩容
+ else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&oldCap >= DEFAULT_INITIAL_CAPACITY){
+     // 左移一位
+     newThr = oldThr << 1; 
+ }
+```
+
+
 
