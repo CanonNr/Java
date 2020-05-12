@@ -12,7 +12,7 @@
   - [**Spring**](/框架/#Spring)
   - [**Spring MVC**](/框架/#Spring-MVC)
   - [**Spring Boot**](/框架/#Spring-Boot)
-  - **MyBatis**
+  - [**MyBatis**](框架/#MyBatis)
   - **JPA**
 - **数据库**
 
