@@ -26,7 +26,7 @@
 
     - [MyBatis一二级缓存](框架/MyBatis/MyBatis一二级缓存)
 
-    - [基础的联合查询](框架/MyBatis/联合查询)
+    - [基础的联合查询](框架/MyBatis/基础的联合查询)
 
     - [动态SQL](框架/MyBatis/动态SQL)
 
