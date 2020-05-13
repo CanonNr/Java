@@ -7,7 +7,7 @@
 // dao
 public Student findStudentById(Integer id);
 
-// xml
+// mapper
 <select id="findStudentById" resultType="entity.Student">
         SELECT * FROM students WHERE id = #{id}
 </select>
@@ -32,7 +32,7 @@ null
 // 查询所有数据
 // dao
 public List<Student> getAll();
-// xml
+// mapper
 <select id="getAll" resultType="entity.Student">
 	SELECT * FROM students
 </select>
@@ -56,7 +56,8 @@ System.out.println(student);
 // dao
 @MapKey("name")
 public Map<String,Student> getAll1();
-// xml
+
+// mapper
 <select id="getAll1" resultType="entity.Student">
 	SELECT * FROM students
 </select>
@@ -98,10 +99,77 @@ Student{id=3, name='王五', sex=1, birthday=Mon Oct 11 08:00:00 CST 1999, class
 // dao
 public Integer add(Student student);
 
-// xml
+// mapper
 <insert id="add" >
         insert into students(name,sex,birthday,classroom_id) values (#{name},#{sex},#{birthday},#{classroom_id})
 </insert>
+// 输出结果
+1
+```
+
+
+
+
+
+## 改
+
+```java
+// dao
+Integer UpdateUserById(User user);
+
+// mapper
+<update id="UpdateUserById" >
+    UPDATE users
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">name = #{name},</if>
+            <if test="password!=null">password = #{password},</if>
+            <if test="email!=null">email = #{email},</if>
+            <if test="address!=null">address = #{address},</if>
+            <if test="birthday!=null">birthday = #{birthday},</if>
+        </trim>
+        WHERE id = #{id};
+</update>
+
+// test
+SqlSession sqlSession = sqlSessionFactory.openSession();
+UserDao mapper = sqlSession.getMapper(UserDao.class);
+// 先查询到指定的 用户
+User user = mapper.getUserById(1);
+// 修改邮箱
+user.setEmail("8888@qq.com");
+// 执行修改语句
+Integer integer = mapper.UpdateUserById(user);
+System.out.println(integer);
+sqlSession.commit();
+sqlSession.close()
+ 
+// 输出结果
+1
+```
+
+
+
+
+
+## 删
+
+```java
+// dao
+Integer deleteUserById(Integer id);
+
+// mapper
+<delete id="deleteUserById">
+	delete from users where id = #{id}
+</delete>
+
+// test
+SqlSession sqlSession = sqlSessionFactory.openSession();
+UserDao mapper = sqlSession.getMapper(UserDao.class);
+Integer integer = mapper.deleteUserById(9);
+System.out.println(integer);
+sqlSession.commit();
+sqlSession.close();
+
 // 输出结果
 1
 ```
