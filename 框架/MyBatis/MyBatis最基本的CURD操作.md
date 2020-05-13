@@ -87,6 +87,7 @@ Student student = mapper.findStudentByName("王五");
 System.out.println(student);
 
 // 输出结果
+Student{id=3, name='王五', sex=1, birthday=Mon Oct 11 08:00:00 CST 1999, classroom_id=2}
 ```
 
 
@@ -98,9 +99,10 @@ System.out.println(student);
 public Integer add(Student student);
 
 // xml
-
 <insert id="add" >
         insert into students(name,sex,birthday,classroom_id) values (#{name},#{sex},#{birthday},#{classroom_id})
 </insert>
+// 输出结果
+1
 ```
 
