@@ -1,256 +1,6 @@
-## Spring 源码分析（三）- obtainFreshBeanFactory
+## Spring 源码分析（三）- 如何将XML解析为Document
 
-本文主要讲述 `obtainFreshBeanFactory` 方法及其相关类，根据方法的字面意思可以想到这个方法是用于**创建一个新的 Bean 工厂**
-
-### 1.0 ConfigurableListableBeanFactory
-
-```java
-/**
-* 告诉子类刷新内部bean工厂
-* Tell the subclass to refresh the internal bean factory.
-* @return the fresh BeanFactory instance
-* @see #refreshBeanFactory()
-* @see #getBeanFactory()
-*/
-protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
-    // 方法内部很简单 就两个方法
-    // 字面意思:刷新一个 Bean 工厂
-    refreshBeanFactory();
-    // 返回则是一个 获取 Bean 工厂的方法
-    return getBeanFactory();
-}
-```
-
-### 1.1 refreshBeanFactory
-
-```java
-/**
-* This implementation performs an actual refresh of this context's underlying
-* bean factory, shutting down the previous bean factory (if any) and
-* initializing a fresh bean factory for the next phase of the context's lifecycle.
-*/
-@Override
-protected final void refreshBeanFactory() throws BeansException {
-    // 第一步 : 判断是否有BeanFactory 详情查看本文1.1
-    if (hasBeanFactory()) {
-        // 如果已经存在则:,销毁容器中的Bean 关闭BeanFactory
-        destroyBeans();
-        closeBeanFactory();
-    }
-    try {
-        // 创建一个内部的bean工厂  空的 没什么东西 初始化了一些配置
-        DefaultListableBeanFactory beanFactory = createBeanFactory();
-        // 为 beanFactory 设置序列化
-        beanFactory.setSerializationId(getId());
-        // 制 beanfactory ，设置相关属性，如:启动参数、开启注解的自动装配等
-        customizeBeanFactory(beanFactory);
-        // 调用载入Bean定义的方法，此类只是定义了抽象方法，通过子类容器实现
-        // 很关键的一个加载方法,详情查看本文1.3
-        loadBeanDefinitions(beanFactory);
-        synchronized (this.beanFactoryMonitor) {
-            this.beanFactory = beanFactory;
-        }
-    }
-    catch (IOException ex) {
-        throw new ApplicationContextException("I/O error parsing bean definition source for " + getDisplayName(), ex);
-    }
-}
-```
-
-### 1.2  hasBeanFactory
-```java
-/**
-* Determine whether this context currently holds a bean factory,
-* i.e. has been refreshed at least once and not been closed yet.
-* 判断是够已经有存在的bean工厂,至少refreshed了一次且美哦与关闭
-*/
-protected final boolean hasBeanFactory() {
-    synchronized (this.beanFactoryMonitor) {
-        return (this.beanFactory != null);
-    }
-}
-```
-
-```java
-// 销毁 Bean 及关闭 BeanFactory
-protected void destroyBeans() {
-    getBeanFactory().destroySingletons();
-}
-
-
-@Override
-protected final void closeBeanFactory() {
-    synchronized (this.beanFactoryMonitor) {
-        if (this.beanFactory != null) {
-            // 将 beanFactory 的序列化值设为 null
-            this.beanFactory.setSerializationId(null);
-            // beanFactory 也设为 null
-            this.beanFactory = null;
-        }
-    }
-}
-```
-
-
-
-### 1.3 loadBeanDefinitions
-
-> :fire: 高能预警：接下来会出现多个不同的 loadBeanDefinitions 重载类 ，注意区分
-
-```java
-/**
-* 所属类：AbstractXmlApplicationContext
-* 通过 XmlBeanDefinitionReader 加载定义的 Bean
-* Loads the bean definitions via an XmlBeanDefinitionReader.
-* @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
-* @see #initBeanDefinitionReader
-* @see #loadBeanDefinitions
-*/
-@Override
-protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException {
-    // Create a new XmlBeanDefinitionReader for the given BeanFactory.
-    // 为给定的BeanFactory创建一个新的 XmlBeanDefinitionReader
-    // 主要是声明了一些配置
-    XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
-
-    // Configure the bean definition reader with this context's
-    // resource loading environment.
-    // 为 Bean 读取器设置Spring资源加载器
-    // 只是声明没做什么处理
-    beanDefinitionReader.setEnvironment(this.getEnvironment());
-    beanDefinitionReader.setResourceLoader(this);
-    beanDefinitionReader.setEntityResolver(new ResourceEntityResolver(this));
-
-    // Allow a subclass to provide custom initialization of the reader,
-    // then proceed with actually loading the bean definitions.
-    // 当Bean读取器读取Bean定义的xml资源文件时，启用xml的校验机制
-    initBeanDefinitionReader(beanDefinitionReader);
-    // Bean读取器真正实现加载的方法
-    // 注意真正的读取方法,具体讲解在本文1.4
-    loadBeanDefinitions(beanDefinitionReader);
-}
-```
-
-
-
-### 1.4  loadBeanDefinitions
-
-```java
-/**
-* Load the bean definitions with the given XmlBeanDefinitionReader.
-* <p>The lifecycle of the bean factory is handled by the {@link #refreshBeanFactory}
-* method; hence this method is just supposed to load and/or register bean definitions.
-* 使用给定的 XmlBeanDefinitionReader 去定义 Bean
-* Bean factory 的声明周期由 refreshBeanFactory 决定
-* 所以该方法只用于加载和注册Bean
-*/
-protected void loadBeanDefinitions(XmlBeanDefinitionReader reader) throws BeansException, IOException {
-    Resource[] configResources = getConfigResources();
-    if (configResources != null) {
-        reader.loadBeanDefinitions(configResources);
-    }
-    // 获取配置的路径
-    // 注意:之前在 ClassPathXmlApplicationContext 方法里曾经有一个 setConfigLocations 方法,如下图
-    String[] configLocations = getConfigLocations();
-    if (configLocations != null) {
-        // 如果不为空则加载定义的Bean
-        // 此时 configLocations 就等于 开始定义的XML文件名 => Spring.xml
-        // read 之前声明的一个 XmlBeanDefinitionReader 对象
-        // loadBeanDefinitions 具体做了什么在本文1.5
-        reader.loadBeanDefinitions(configLocations);
-    }
-}
-```
-
-![1589619485972](../../image/1589619485972.png)
-
-
-
-### 1.5  loadBeanDefinitions
-
-```java
-@Override
-public int loadBeanDefinitions(String... locations) throws BeanDefinitionStoreException {
-    // 首先判断是不是为空
-    Assert.notNull(locations, "Location array must not be null");
-    // 此处定义了一个计数器
-    int count = 0;
-    for (String location : locations) {
-        // += 加载定义的Bean 参数是 XML的文件名,盲猜是返回所有配置文件里Bean的个数
-        count += loadBeanDefinitions(location);
-    }
-    return count;
-}
-```
-
-
-
-### 1.6 loadBeanDefinitions
-
-```java
-/**
-* Load bean definitions from the specified resource location.
-* 在指定的资源路径中(也就是XML)中加载定义的Bean
-* <p>The location can also be a location pattern, provided that the
-* ResourceLoader of this bean definition reader is a ResourcePatternResolver.
-* @param location the resource location, to be loaded with the ResourceLoader
-* (or ResourcePatternResolver) of this bean definition reader
-* @param actualResources a Set to be filled with the actual Resource objects
-* that have been resolved during the loading process. May be {@code null}
-* to indicate that the caller is not interested in those Resource objects.
-* @return the number of bean definitions found
-* ↑ 注意 @return : 定义的Bean的数量
-*/
-public int loadBeanDefinitions(String location, @Nullable Set<Resource> actualResources) throws BeanDefinitionStoreException {
-	// 获取一下资源加载器
-    ResourceLoader resourceLoader = getResourceLoader();
-    // 空验证
-    if (resourceLoader == null) {
-        throw new BeanDefinitionStoreException(
-            "Cannot load bean definitions from location [" + location + "]: no ResourceLoader available");
-    }
-	
-	if (resourceLoader instanceof ResourcePatternResolver) {
-		// Resource pattern matching available.
-		try {
-			// 指定位置的Bean配置信息解析为Spring IOC容器封装的资源
-			// 载多个指定位置的Bean配置信息
-             // 又是一个一系列的操作,详情查看本文 1.7
-			Resource[] resources = ((ResourcePatternResolver) resourceLoader).getResources(location);
-			int count = loadBeanDefinitions(resources);
-			if (actualResources != null) {
-				Collections.addAll(actualResources, resources);
-			}
-			if (logger.isTraceEnabled()) {
-				logger.trace("Loaded " + count + " bean definitions from location pattern [" + location + "]");
-			}
-			return count;
-		}
-		catch (IOException ex) {
-            throw new BeanDefinitionStoreException(
-                "Could not resolve bean definition resource pattern [" + location + "]", ex
-            );
-		}
-	}else {
-        // Can only load single resources by absolute URL.
-        Resource resource = resourceLoader.getResource(location);
-        int count = loadBeanDefinitions(resource);
-        if (actualResources != null) {
-            actualResources.add(resource);
-        }
-        if (logger.isTraceEnabled()) {
-            logger.trace("Loaded " + count + " bean definitions from location [" + location + "]");
-        }
-        return count;
-    }
-}
-```
-
-
-
-
-
-### 1.7  getResources
+### 3.1 getResources
 
 ```java
 //---------------------------------------------------------------------
@@ -297,14 +47,14 @@ public Resource[] getResources(String locationPattern) throws IOException {
         }
         else {
             // a single resource with the given name
-            // 获取一个资源的对象 详情查看1.8
+            // 获取一个资源的对象 详情查看3.2
             return new Resource[] {getResourceLoader().getResource(locationPattern)};
         }
     }
 }
 ```
 
-### 1.8 getResource
+### 3.2 getResource
 
 ```java
 @Override
@@ -336,7 +86,7 @@ public Resource getResource(String location) {
         catch (MalformedURLException ex) {
             // No URL -> resolve as resource path.
             // 上面声明 URL 对象时 传入的参数如果不是 URL 则会报错
-            // 所以会通过 path 获取一个资源对象 详情1.9
+            // 所以会通过 path 获取一个资源对象 详情3.3
             return getResourceByPath(location);
         }
     }
@@ -345,7 +95,7 @@ public Resource getResource(String location) {
 
 
 
-### 1.9  getResourceByPath
+### 3.3  getResourceByPath
 
 ```java
 // Return a Resource handle for the resource at the given path.
@@ -371,7 +121,7 @@ public ClassPathResource(String path, @Nullable ClassLoader classLoader) {
 
 
 
-### 1.10 loadBeanDefinitions
+### 3.4 loadBeanDefinitions
 
 > 🚀 在 `1.9 getResourceByPath` 我们成功获取到了一个配置文件的 `Resource` 对象
 >
@@ -405,11 +155,11 @@ public int loadBeanDefinitions(String location, @Nullable Set<Resource> actualRe
         try {
             // 指定位置的Bean配置信息解析为Spring IOC容器封装的资源
             // 载多个指定位置的Bean配置信息
-            // 由 1.7 ~ 1.9 一系列操作 得到了一个 Resource 对象的数组
+            // 得到了一个 Resource 对象的数组
             Resource[] resources = ((ResourcePatternResolver) resourceLoader).getResources(location);
             // 截止到现在我们完成的仅仅是将 Spring.xml 字符串转换成了 resource 对象
             // 看下图,一个存放着 resource 对象的数组
-            // loadBeanDefinitions 具体操作看本文 1.11
+            // loadBeanDefinitions 具体操作看本文 3.5
             int count = loadBeanDefinitions(resources);
             if (actualResources != null) {
                 Collections.addAll(actualResources, resources);
@@ -443,7 +193,7 @@ public int loadBeanDefinitions(String location, @Nullable Set<Resource> actualRe
 
 
 
-### 1.11 loadBeanDefinitions
+### 3.5 loadBeanDefinitions
 
 ```java
 @Override
@@ -468,7 +218,7 @@ public int loadBeanDefinitions(Resource... resources) throws BeanDefinitionStore
 public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException {
     // 第一步先将 Resource 对象进行了一个编码的处理
     // 第二步才是解析 XML
-    // 具体操作查看本文 1.12
+    // 具体操作查看本文 3.6
     return loadBeanDefinitions(new EncodedResource(resource));
 }
 ```
@@ -477,7 +227,7 @@ public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreExce
 
 
 
-### 1.12 loadBeanDefinitions
+### 3.6 loadBeanDefinitions
 
 ```java
 /**
@@ -513,7 +263,7 @@ public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefin
             }
             // 看方法名:加载 定义 bean (此方法不简单)
             // 还有一个有意思的:在Spring中很多doxxxx的方法可能都是即将有实际操作的方法	
-            // 具体做了什么 本文 1.13
+            // 具体做了什么 本文 3.7
             return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
         }
         finally {
@@ -536,7 +286,7 @@ public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefin
 
 
 
-### 1.13  doLoadBeanDefinitions
+### 3.7  doLoadBeanDefinitions
 
 ```java
 /**
@@ -547,7 +297,7 @@ protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
     throws BeanDefinitionStoreException {
     try {
         // 首先是读取一个文档,参数有两个:输入流和资源类
-        // 查看本文1.14
+        // 查看本文3.8
         Document doc = doLoadDocument(inputSource, resource);
         int count = registerBeanDefinitions(doc, resource);
         if (logger.isDebugEnabled()) {
@@ -564,7 +314,7 @@ protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
 
 
 
-### 1.14 doLoadDocument
+### 3.8 doLoadDocument
 
 ```java
 /**
@@ -573,7 +323,7 @@ protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
 */
 protected Document doLoadDocument(InputSource inputSource, Resource resource) throws Exception {
     // 验证偏多
-    // loadDocument 方法查看本文 1.15
+    // loadDocument 方法查看本文 3.9
     return this.documentLoader.loadDocument(inputSource, getEntityResolver(),
                                             this.errorHandler,
                                             getValidationModeForResource(resource),
@@ -702,12 +452,15 @@ public int detectValidationMode(InputStream inputStream) throws IOException {
 
 
 
-### 1.15 loadDocument
+### 3.9 loadDocument
+
+> 此步骤主要是用于创建一个工厂,用于读取XML文件
 
 ```java
 /**
 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured
 * XML parser.
+* 使用标准的JAXP配置，将{@link Document}加载到提供的{@link InputSource}中
 */
 @Override
 public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,
@@ -719,8 +472,136 @@ public Document loadDocument(InputSource inputSource, EntityResolver entityResol
     if (logger.isTraceEnabled()) {
         logger.trace("Using JAXP provider [" + factory.getClass().getName() + "]");
     }
+    // 工厂有了 ,可以创建了
     DocumentBuilder builder = createDocumentBuilder(factory, entityResolver, errorHandler);
+    // 注意:说到底XML就是一堆字符串,不方便读取和操作
+    // 这一步就是解析XML
+    // 注意一下这个类的返回类型 Document,所以该方法就是 将字符串的 XML 解析为了 Document 对象
     return builder.parse(inputSource);
 }
 ```
+
+
+
+```java
+/**
+* Create the {@link DocumentBuilderFactory} instance.
+* 创建一个构建文档的工厂
+*/
+protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware)
+    throws ParserConfigurationException {
+
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    factory.setNamespaceAware(namespaceAware);
+	// 验证方式 != 0
+    if (validationMode != XmlValidationModeDetector.VALIDATION_NONE) {
+        factory.setValidating(true);
+        // 验证方式 == XSD
+        if (validationMode == XmlValidationModeDetector.VALIDATION_XSD) {
+            // Enforce namespace aware for XSD...
+            factory.setNamespaceAware(true);
+            try {
+                // 添加一个属性,地址的验证
+                factory.setAttribute(SCHEMA_LANGUAGE_ATTRIBUTE, XSD_SCHEMA_LANGUAGE);
+            }
+            catch (IllegalArgumentException ex) {
+                ParserConfigurationException pcex = new ParserConfigurationException(
+                    "Unable to validate using XSD: Your JAXP provider [" + factory +
+                    "] does not support XML Schema. Are you running on Java 1.4 with Apache Crimson? " +
+                    "Upgrade to Apache Xerces (or Java 1.5) for full XSD support.");
+                pcex.initCause(ex);
+                throw pcex;
+            }
+        }
+    }
+	// 返回一个工厂
+    return factory;
+}
+```
+
+```java
+/**
+* Create a JAXP DocumentBuilder that this bean definition reader
+* 创建一个JAXP DocumentBuilder，该bean定义阅读器
+* will use for parsing XML documents. Can be overridden in subclasses,
+* 将用于解析XML文档。可以在子类中覆盖，
+* adding further initialization of the builder.
+* 添加构建器的进一步初始化
+* @param factory the JAXP DocumentBuilderFactory that the DocumentBuilder
+* should be created with
+* @param entityResolver the SAX EntityResolver to use
+* @param errorHandler the SAX ErrorHandler to use
+* @return the JAXP DocumentBuilder
+* @throws ParserConfigurationException if thrown by JAXP methods
+*/
+protected DocumentBuilder createDocumentBuilder(DocumentBuilderFactory factory,
+                                                @Nullable EntityResolver entityResolver, 
+                                                @Nullable ErrorHandler errorHandler)
+    throws ParserConfigurationException {
+
+    DocumentBuilder docBuilder = factory.newDocumentBuilder();
+    if (entityResolver != null) {
+        docBuilder.setEntityResolver(entityResolver);
+    }
+    if (errorHandler != null) {
+        docBuilder.setErrorHandler(errorHandler);
+    }
+    return docBuilder;
+}
+```
+
+
+
+### 3.10 doLoadBeanDefinitions
+
+> 🚀 前面 loadDocument 方法主要是为了实现解析XML文件
+>
+> 现在 XML 已经解析为了 Document 对象
+>
+> 回到 doLoadBeanDefinitions 方法 
+
+```java
+/**
+* Actually load bean definitions from the specified XML file.
+* 怀疑是一个划水的官方方法文档,在定义的XML文件中加载Bean对象已经说了很多次了
+*/
+protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
+    throws BeanDefinitionStoreException {
+    try {
+        // 首先是读取一个文档,参数有两个:输入流和资源类
+        // 解析XML 为 Document 对象
+        Document doc = doLoadDocument(inputSource, resource);
+        // 此时 DEBUG 看一下 doc是个啥 . 图在下面
+        int count = registerBeanDefinitions(doc, resource);
+        if (logger.isDebugEnabled()) {
+            logger.debug("Loaded " + count + " bean definitions from " + resource);
+        }
+        return count;
+    }
+    catch (BeanDefinitionStoreException ex) {
+       // 源代码中此处有很多 catch 的异常捕获,为了看得舒服我删掉了
+    }
+}
+
+
+```
+
+![1589653172514](../../image/1589653172514.png)
+
+包含了很多属性，我逐个点开看了一下还是找到了熟悉的面孔
+
+![1589653269747](../../image/1589653269747.png)
+
+确实面熟，因为这是我之前在 `Spring.xml` 中定义的 Bean
+
+```xml
+<bean id="user" class="com.lksun.entity.User">
+    <property name="email" value="112233@qq.com"/>
+    <property name="name" value="sunran"/>
+</bean>
+```
+
+看到这个说明我们定义的XML文件已经被Spring解析并存在了对象中
+
+**划重点**：截止到目前仅仅是**将字符串的XML 解析为了 Document 对象**
 
