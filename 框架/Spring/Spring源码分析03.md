@@ -1,4 +1,4 @@
-## Spring 源码分析（三）- 如何将XML解析为Document
+## Spring 源码分析（三）- 将XML解析为Document
 
 ### 3.1 getResources
 
