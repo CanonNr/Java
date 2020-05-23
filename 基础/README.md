@@ -73,7 +73,7 @@
 - [CountDownLatch 和 CyclicBarrier](基础/高并发与多线程/CountDownLatch和CyclicBarrier)
 - [ReentrantLock使用](基础/高并发与多线程/ReentrantLock使用)
 - [CountDownLatch 倒数闸门](基础/高并发与多线程/CountDownLatch)
-- [占坑](基础/高并发与多线程/占坑)
+- [AtomicInteger 简述](基础/高并发与多线程/AtomicInteger简述)
 - [占坑](基础/高并发与多线程/占坑)
 
 
