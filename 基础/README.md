@@ -66,14 +66,13 @@
 - [多线程简述](基础/高并发与多线程/多线程简述)
 - [多线程基本操作](基础/高并发与多线程/多线程基本操作)
 - [多线程入门练习 - 模拟一个卖票流程](基础/高并发与多线程/多线程入门练习-模拟一个卖票流程)
-- [synchronized 和 volatile对比](基础/高并发与多线程/synchronized和volatile对比)
-- [volatile 和 synchronized 的区别](基础/高并发与多线程/volatile和synchronized的区别)
+- [synchronized](基础/高并发与多线程/synchronized)
+- [volatile](基础/高并发与多线程/volatile)
 - [CAS 简述](基础/高并发与多线程/CAS简述)
 - [Unsafe 应用解析](基础/高并发与多线程/Unsafe应用解析)
 - [CountDownLatch 和 CyclicBarrier](基础/高并发与多线程/CountDownLatch和CyclicBarrier)
 - [ReentrantLock使用](基础/高并发与多线程/ReentrantLock使用)
 - [CountDownLatch 倒数闸门](基础/高并发与多线程/CountDownLatch)
-
 - [占坑](基础/高并发与多线程/占坑)
 - [占坑](基础/高并发与多线程/占坑)
 
