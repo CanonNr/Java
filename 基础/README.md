@@ -75,7 +75,10 @@
 - [ReentrantLock 基本使用](基础/高并发与多线程/ReentrantLock基本使用)
 - [AtomicInteger 简述](基础/高并发与多线程/AtomicInteger简述)
 - [练习：多种方式实现容量监控](基础/高并发与多线程/练习：多种方式实现容量监控)
+- [ThreadLocak 简述](基础/高并发与多线程/ThreadLocak简述)
 - [占坑](基础/高并发与多线程/占坑)
+
+
 
 
 
