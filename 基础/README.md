@@ -62,24 +62,41 @@
 ## 高并发与多线程
 
 - [浅谈并发编程](基础/高并发与多线程/浅谈并发编程)
+
 - [并发编程的三大特性](基础/高并发与多线程/并发编程的三大特性)
+
 - [多线程简述](基础/高并发与多线程/多线程简述)
+
 - [多线程基本操作](基础/高并发与多线程/多线程基本操作)
+
 - [多线程入门练习 - 模拟一个卖票流程](基础/高并发与多线程/多线程入门练习-模拟一个卖票流程)
+
 - [wait 和 notify](基础/高并发与多线程/wait和notify)
+
 - [synchronized](基础/高并发与多线程/synchronized)
+
 - [volatile](基础/高并发与多线程/volatile)
+
 - [CAS 简述](基础/高并发与多线程/CAS简述)
+
 - [Unsafe 应用解析](基础/高并发与多线程/Unsafe应用解析)
+
 - [CountDownLatch 和 CyclicBarrier](基础/高并发与多线程/CountDownLatch和CyclicBarrier)
+
 - [ReentrantLock 基本使用](基础/高并发与多线程/ReentrantLock基本使用)
+
 - [AtomicInteger 简述](基础/高并发与多线程/AtomicInteger简述)
+
 - [练习：多种方式实现容量监控](基础/高并发与多线程/练习：多种方式实现容量监控)
+
 - [ThreadLocak 简述](基础/高并发与多线程/ThreadLocak简述)
+
 - [线程池简述](基础/高并发与多线程/线程池简述)
+
 - [线程池 - ThreadPoolExecutor](基础/高并发与多线程/线程池-ThreadPoolExecutor)
+
 - [占坑](基础/高并发与多线程/占坑)
-- [占坑](基础/高并发与多线程/占坑)
+
 
 
 
@@ -88,7 +105,8 @@
 
 ## JVM
 
-- JVM内存模型
+- [Java 内存模型](基础/JVM/Java内存模型)
+
 - 性能调优
 - 垃圾回收
 - 类加载器
