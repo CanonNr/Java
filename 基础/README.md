@@ -105,9 +105,9 @@
 
 ## JVM
 
-- [Java 内存结构](基础/JVM/Java内存结构)
+- [JVM 内存结构](基础/JVM/JVM内存结构)
 
-- [Java 内存模型](基础/JVM/Java内存模型)
+- [JVM 内存模型](基础/JVM/JVM内存模型)
 
 - 性能调优
 
