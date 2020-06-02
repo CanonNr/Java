@@ -106,9 +106,15 @@
 ## JVM
 
 - 类加载器
+
 - [JVM 内存结构](基础/JVM/JVM内存结构)
+
 - [Garbage Collector 垃圾回收](基础/JVM/GarbageCollector垃圾回收)
-- [JVM 内存模型](基础/JVM/JVM内存模型)  // todo
+
+- [垃圾收集器](基础/JVM/垃圾收集器)
+
+- [JVM 内存模型](基础/JVM/JVM内存模型)
+
 - 性能调优
 
 
