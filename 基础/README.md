@@ -109,13 +109,17 @@
 
 - [JVM 内存结构](基础/JVM/JVM内存结构)
 
-- [Garbage Collector 垃圾回收](基础/JVM/GarbageCollector垃圾回收)
+- [垃圾收集算法](基础/JVM/垃圾收集算法)
 
 - [垃圾收集器](基础/JVM/垃圾收集器)
 
-- [JVM 内存模型](基础/JVM/JVM内存模型)
+- JVM 监控
 
 - 性能调优
+
+- 常用参数
+
+- 调优案例
 
 
 
