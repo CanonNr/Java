@@ -15,9 +15,8 @@
   - [**MyBatis**](框架/#MyBatis)
   - **JPA**
 - **数据库**
-
-  - **MySQL**
-  - **Oracle**
+  - [**MySQL**](/数据库/#MySQL)
+  -  **Oracle**
 - **缓存**
   - **Redis**
   - **MongoDB**
