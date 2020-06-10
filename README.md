@@ -238,9 +238,10 @@
 - **MySQL的集群方案及配置**
 
   - [基于Docker 创建多个 MySQL 容器](/数据库/MySQL/基于Docker创建多个MySQL容器)
-- [基于Docker 容器下配置多节点的 MySQL 主从复制](/数据库/MySQL/基于Docker容器下配置多节点的MySQL主从复制)
   
-- [占坑](/数据库/MySQL/)
+  - [基于Docker 容器下配置多节点的 MySQL 主从复制](/数据库/MySQL/基于Docker容器下配置多节点的MySQL主从复制)
+  
+  - [占坑](/数据库/MySQL/)
   
   
 
