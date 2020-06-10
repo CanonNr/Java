@@ -1,21 +1,21 @@
 - [**首页**](/)
-- **基础**
-  - [**必会**](基础/#必会)
-  - [**容器**](基础/#容器)
-  - [**JDBC**](基础/#JDBC)
-  - [**高并发与多线程**](基础/#高并发与多线程)
-  - [**JVM**](基础/#JVM)
-  - [**设计模式**](基础/#设计模式)
+- [**基础**](#基础)
+  - [**必会**](#必会)
+  - [**容器**](#容器)
+  - [**JDBC**](#JDBC)
+  - [**高并发与多线程**](#高并发与多线程)
+  - [**JVM**](#JVM)
+  - [**设计模式**](#设计模式)
 - **前端**
-  - [**VUE**](/前端/#VUE)
+  - [**VUE**](#VUE)
 - **框架**
-  - [**Spring**](/框架/#Spring)
-  - [**Spring MVC**](/框架/#Spring-MVC)
-  - [**Spring Boot**](/框架/#Spring-Boot)
-  - [**MyBatis**](框架/#MyBatis)
+  - [**Spring**](#Spring)
+  - [**Spring MVC**](#Spring-MVC)
+  - [**Spring Boot**](#Spring-Boot)
+  - [**MyBatis**](#MyBatis)
   - **JPA**
 - **数据库**
-  - [**MySQL**](/数据库/#MySQL)
+  - [**MySQL**](#MySQL)
   -  **Oracle**
 - **缓存**
   - **Redis**
