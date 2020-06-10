@@ -1,5 +1,6 @@
 # 基础{docsify-ignore-all}
-## 必会 {docsify-ignore-all}
+
+## 必会
 
 - [使用命令行执行JAVA程序](基础/必会/使用命令行执行JAVA程序)
 
