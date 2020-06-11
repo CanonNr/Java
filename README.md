@@ -235,12 +235,12 @@
 
     - [MySQL调优总结](/数据库/MySQL/MySQL调优总结)
 
-- **MySQL的集群方案及配置**
+- **MySQL的集群**
 
-  - [基于Docker 创建多个 MySQL 容器](/数据库/MySQL/基于Docker创建多个MySQL容器)
-  
+  - [Mysql 主从复制及原理](/数据库/MySQL/Mysql主从复制及原理)
+  - [基于Docker 创建多个 MySQL 节点](/数据库/MySQL/基于Docker创建多个MySQL节点)
   - [基于Docker 容器下配置多节点的 MySQL 主从复制](/数据库/MySQL/基于Docker容器下配置多节点的MySQL主从复制)
-  
+  - [基于Docker 容器 MySQL 多主集群方案](/数据库/MySQL/基于Docker容器MySQL多主集群方案)
   - [占坑](/数据库/MySQL/)
   
   
