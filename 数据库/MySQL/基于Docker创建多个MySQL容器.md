@@ -9,7 +9,7 @@
 多节点肯定是需要网络的互通，为了方便我这定义了一个`network`
 
 ```shell
-docker network create --driver bridge  mynet
+docker network create --driver bridge  net
 ```
 
 # 构建
@@ -17,7 +17,7 @@ docker network create --driver bridge  mynet
 ```shell
 # 节点一
 docker run -p 5501:3306 --name MySQL.Cluster.Node1 /
---network=mynet --restart=always /
+--network=net --restart=always /
 -v "D:\Docker\MySQL.Cluster\Node1\conf":/etc/mysql /
 -v "D:\Docker\MySQL.Cluster\Node1\logs":/var/log/mysql  /
 -v "D:\Docker\MySQL.Cluster\Node1\data":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root /
@@ -25,7 +25,7 @@ docker run -p 5501:3306 --name MySQL.Cluster.Node1 /
 
 # 节点二
 docker run -p 5502:3306 --name MySQL.Cluster.Node2 /
---network=mynet --restart=always /
+--network=net --restart=always /
 -v "D:\Docker\MySQL.Cluster\Node2\conf":/etc/mysql /
 -v "D:\Docker\MySQL.Cluster\Node2\logs":/var/log/mysql  /
 -v "D:\Docker\MySQL.Cluster\Node2\data":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root /
@@ -33,6 +33,20 @@ docker run -p 5502:3306 --name MySQL.Cluster.Node2 /
 
 # 节点N
 ...
+```
+
+
+
+# 查看列表
+
+```shell
+docker network ls
+
+NETWORK ID          NAME                DRIVER              SCOPE
+76e8336076fe        bridge              bridge              local
+1ea033600e79        host                host                local
+2246b4049a27        net                 bridge              local
+1504988411f1        none                null                local
 ```
 
 
