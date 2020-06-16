@@ -253,5 +253,6 @@
 - [通过Docker运行Redis服务](/缓存/Redis/通过Docker运行Redis服务)
 - [Java使用Redis](/缓存/Redis/Java使用Redis)
 - [通过客户端监控Redis](/缓存/Redis/通过客户端监控Redis)
+- [Redis持久化 - RDB 和 AOF](Redis持久化-RDB和AOF)
 
 
