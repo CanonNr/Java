@@ -256,3 +256,7 @@
 - [Redis持久化 - RDB 和 AOF](/缓存/Redis/Redis持久化-RDB和AOF)
 
 
+
+# 其他
+
+- [可能是对 CAP 理论最好解释了](/其他/可能是对CAP理论最好解释了)
