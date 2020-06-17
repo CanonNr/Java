@@ -7,7 +7,7 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link href="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/themes/vue.css" rel="stylesheet">
-  <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 
 </head>
 <body>
@@ -20,11 +20,10 @@
       // 使用相对路径
       relativePath: true,
       loadNavbar: true,
-      loadSidebar: true,
+      loadSidebar: false,
       auto2top: true,
       maxLevel: 2,
       loadNavbar: true,
-      loadSidebar: true,
       subMaxLevel: 3,
       themeColor: '#FF7E00',
       repo: 'https://github.com/CanonNr',
@@ -37,9 +36,6 @@
   
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/docsify.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/plugins/emoji.js"></script>
-  <!-- gitalk 评论-->
-  <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/plugins/gitalk.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/plugins/gitalk.min.js"></script>
   <!-- 代码高亮 -->
   <script src="//unpkg.com/prismjs/components/prism-java.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-yaml.js"></script>
@@ -49,10 +45,11 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/plugins/search.min.js"></script>
   <!-- MD5 -->
   <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
-  <!---->
-  <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/plugins/ga.js"></script>
   <!-- 图片缩放 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/docsify/4.11.3/plugins/zoom-image.min.js"></script>
+  <!-- gitalk 评论-->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
 
 
   <script>
