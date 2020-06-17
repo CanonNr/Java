@@ -14,11 +14,30 @@ RDB持久化产生的RDB文件是一个经过压缩的二进制文件，这个�
 
 RDB持久化相当于备份数据库状态，类似打写快照
 
+
+
 ## AOF（Append-Only-File ）
 
 份数据库接收到的命令，所有被写入AOF的命令都是以redis的协议格式来保存的。
 
 在AOF持久化的文件中，数据库会记录下所有**变更数据库状态的命令**，除了指定数据库的select命令，其他的命令都是来自client的，这些命令会以追加(append)的形式保存到文件中。
+
+## 配置
+
+```shell
+# 是否开启AOF，默认关闭
+appendonly yes
+
+# 设定 AOF 的文件名
+appendfilename appendonly.aof
+
+# Redis支持三种不同的刷写模式：
+# appendfsync always # 每次收到写命令就立即强制写入磁盘，是最有保证的完全的持久化，但速度也是最慢的，一般不推荐使用。
+appendfsync everysec # 每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，是受推荐的方式。
+# appendfsync no     # 完全依赖OS的写入，一般为30秒左右一次，性能最好但是持久化最没有保证，不被推荐。
+```
+
+
 
 # 对比
 
