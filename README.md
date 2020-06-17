@@ -1,4 +1,4 @@
-# 基础{docsify-ignore-all}
+# 基础
 
 ## 必会
 
@@ -18,7 +18,7 @@
 
 
 
-## 容器{docsify-ignore-all}
+## 容器
 
 - [List、Set、Queue、Map](基础/容器/List、Set、Queue、Map)
 
@@ -254,6 +254,10 @@
 - [Java使用Redis](/缓存/Redis/Java使用Redis)
 - [通过客户端监控Redis](/缓存/Redis/通过客户端监控Redis)
 - [Redis持久化 - RDB 和 AOF](/缓存/Redis/Redis持久化-RDB和AOF)
+
+
+
+
 
 ----
 
