@@ -238,11 +238,12 @@
 - **MySQL的集群**
 
   - [Mysql 主从复制及原理](/数据库/MySQL/Mysql主从复制及原理)
+
   - [基于Docker 创建多个 MySQL 节点](/数据库/MySQL/基于Docker创建多个MySQL节点)
+
   - [基于Docker 容器下配置多节点的 MySQL 主从复制](/数据库/MySQL/基于Docker容器下配置多节点的MySQL主从复制)
+
   - [基于Docker 容器 MySQL 多主集群方案](/数据库/MySQL/基于Docker容器MySQL多主集群方案)
-  - [占坑](/数据库/MySQL/)
-  
 
 ---
 
@@ -251,17 +252,18 @@
 ## Redis
 
 - [通过Docker运行Redis服务](/缓存/Redis/通过Docker运行Redis服务)
+
 - [Java使用Redis](/缓存/Redis/Java使用Redis)
+
 - [通过客户端监控Redis](/缓存/Redis/通过客户端监控Redis)
+
 - [Redis持久化 - RDB 和 AOF](/缓存/Redis/Redis持久化-RDB和AOF)
-
-
-
-
 
 ----
 
 # 其他
 
 - [可能是对 CAP 理论最好解释了](/其他/可能是对CAP理论最好解释了)
+
+- [数据一致性](/其他/数据一致性)
 
