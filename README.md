@@ -266,7 +266,7 @@
 ## ZooKeeper
 
 - [ZooKeeper 入门](/分布式/ZooKeeper/ZooKeeper入门)
-- [ZooKeeper 的数据结构模型](/分布式/ZooKeeper/ZooKeeper的数据结构模型)
+- [基于 Docker 的 ZooKeeper 集群](/分布式/ZooKeeper/基于Docker的ZooKeeper集群)
 - [ZooKeeper 集群为什么是奇数台](/分布式/ZooKeeper/ZooKeeper集群为什么是奇数台)
 
 
