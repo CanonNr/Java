@@ -40,3 +40,21 @@ ZooKeeper 提供的名称空间与标准文件系统的名称空间非常相似�
 
 ![ZooKeeper的层次命名空间](../../image/zknamespace.jpg)
 
+
+
+# 角色
+
+- **Leader** 一个ZooKeeper集群同一时间只会有一个实际工作的Leader，它会发起并维护与各Follwer及Observer间的心跳。所有的写操作必须要通过Leader完成再由Leader将写操作广播给其它服务器。
+- **Follower** 一个ZooKeeper集群可能同时存在多个Follower，它会响应Leader的心跳。Follower可直接处理并返回客户端的读请求，同时会将写请求转发给Leader处理，并且负责在Leader处理写请求时对请求进行投票。
+- **Observer** 角色与Follower类似，但是无投票权。
+
+
+
+# 节点状态
+
+- **Looking** ：选举状态。
+
+- **Following** ：Follower节点（从节点）所处的状态。
+
+- **Leading** ：Leader节点（主节点）所处状态。
+

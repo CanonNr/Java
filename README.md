@@ -268,6 +268,8 @@
 - [ZooKeeper 入门](/分布式/ZooKeeper/ZooKeeper入门)
 - [基于 Docker 的 ZooKeeper 集群](/分布式/ZooKeeper/基于Docker的ZooKeeper集群)
 - [ZooKeeper 集群为什么是奇数台](/分布式/ZooKeeper/ZooKeeper集群为什么是奇数台)
+- [Zookeeper 的一致性](/分布式/ZooKeeper/ZooKeeper的一致性)
+- [Zookeeper 的崩溃恢复](/分布式/ZooKeeper/ZooKeeper的崩溃恢复)
 
 
 
