@@ -24,7 +24,8 @@
 
 1. 客户端向任意`Leader`发起写入请求
 2. `Leader`以Proposal的形式发给所有`Follower`并等待`ACK``
-3. ``Follower`写入日志
+3. `Follower`写入日志
 4. 写入成功后返回`ACK`消息
 5. 当`Leader`接到半数以上`ACK`消息，返回成功给客户端，并且广播`Commit`请求给`Follower`
 6. 最后返回给客户端
+
