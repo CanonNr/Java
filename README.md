@@ -267,6 +267,7 @@
 
 ## 基础
 - [消息队列概述](/消息队列/基础/消息队列概述)
+- [JMS和AMQP](/消息队列/基础/JMS和AMQP)
 
 ## ActiveMQ
 
@@ -289,7 +290,6 @@
 - [ZooKeeper 的数据写入](/系统设计/ZooKeeper/ZooKeeper的数据写入)
 
 - [ZooKeeper 在项目中的应用](/系统设计/ZooKeeper/ZooKeeper在项目中的应用)
-
 
 ---
 
