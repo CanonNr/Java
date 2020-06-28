@@ -1,6 +1,6 @@
 # JMS 和 AMQP对比
 
-### JMS
+## JMS
 
 ​         通常而言提到 **JMS（Java MessageService）**实际上是指JMS API。JMS是由Sun公司早期提出的消息标准，旨在为java应用提供统一的消息操作，包括create、send、receive等。JMS已经成为Java Enterprise Edition的一部分。从使用角度看，JMS和JDBC担任差不多的角色，用户都是根据相应的接口可以和实现了JMS的服务进行通信，进行相关的操作。
 
@@ -46,7 +46,7 @@
 - `ObjectMessage`（一个序列化的Java对象）
 - `BytesMessage`（一个字节的数据流）
 
- ### 实现
+### 实现
 
 常见的消息队列，大部分都实现了JMS API，可以担任JMS provider的角色，如`ActiveMQ`，`Redis`等。
 
@@ -67,6 +67,6 @@
 | 定义         | Java api                                                     | Wire-protocol                                                |
 | 跨语言       | 否                                                           | 是                                                           |
 | 跨平台       | 否                                                           | 是                                                           |
-| Model        | 提供两种消息模型：<br/>（1）、Peer-2-Peer<br/>（2）、Pub/sub | 提供了五种消息模型：<br/>（1）、direct exchange<br/>（2）、fanout exchange<br/>（3）、topic change<br/>（4）、headers exchange<br/>（5）、system exchange<br/>本质来讲，后四种和JMS的pub/sub模型没有太大差别，仅是在路由机制上做了更详细的划分； |
+| Model        | 提供两种消息模型：<br/>（1）Peer-2-Peer<br/>（2）Pub/sub     | 提供了五种消息模型：<br/>（1）direct exchange<br/>（2）fanout exchange<br/>（3）topic change<br/>（4）headers exchange<br/>（5）system exchange<br/>本质来讲，后四种和JMS的pub/sub模型没有太大差别，仅是在路由机制上做了更详细的划分； |
 | 支持消息类型 | 多种消息类型：<br/>`TextMessage`<br/>`MapMessage`<br/>`BytesMessage`<br/>`StreamMessage`<br/>`ObjectMessage`<br/>`Message` （只有消息头和属性） | byte[]<br/>当实际应用时，有复杂的消息，可以将消息序列化后发送。 |
 | 综合评价     | JMS 定义了JAVA API层面的标准；在java体系中，多个client均可以通过JMS进行交互，不需要应用修改代码，但是其对跨平台的支持较差； | AMQP定义了wire-level层的协议标准；天然具有跨平台、跨语言特性。 |
