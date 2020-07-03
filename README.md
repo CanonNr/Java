@@ -94,7 +94,6 @@
 
 - [线程池 - ThreadPoolExecutor](基础/高并发与多线程/线程池-ThreadPoolExecutor)
 
-- [占坑](基础/高并发与多线程/占坑)
 
 
 
@@ -206,8 +205,6 @@
 
 ## MySQL
 
-
-
 - **MySQL 基础及优化**
 
     - [MyISAM 和 InnoDB的区别](/数据库/MySQL/MyISAM和InnoDB的区别)
@@ -288,23 +285,35 @@
 
 - [JMS和AMQP](/消息队列/基础/JMS和AMQP)
 
-## ActiveMQ
-
 ----
+
+# 系统设计
+
+## 大型网站架构
+
+- 限流
+- 扩容
+- 降级
+- RPC
+- 认证授权
+
+
+
+---
 
 # 分布式
 
 ## ZooKeeper
 
-- [ZooKeeper 入门](/系统设计/ZooKeeper/ZooKeeper入门)
+- [ZooKeeper 入门](/分布式/ZooKeeper/ZooKeeper入门)
 
-- [基于 Docker 的 ZooKeeper 集群](/系统设计/ZooKeeper/基于Docker的ZooKeeper集群)
+- [基于 Docker 的 ZooKeeper 集群](/分布式/ZooKeeper/基于Docker的ZooKeeper集群)
 
-- [ZooKeeper 集群为什么是奇数台](/系统设计/ZooKeeper/ZooKeeper集群为什么是奇数台)
+- [ZooKeeper 集群为什么是奇数台](/分布式/ZooKeeper/ZooKeeper集群为什么是奇数台)
 
-- [ZooKeeper 的ZAB协议](/系统设计/ZooKeeper/ZooKeeper的ZAB协议)
+- [ZooKeeper 的ZAB协议](/分布式/ZooKeeper/ZooKeeper的ZAB协议)
 
-- [ZooKeeper 的崩溃恢复](/系统设计/ZooKeeper/ZooKeeper的崩溃恢复)
+- [ZooKeeper 的崩溃恢复](/分布式/ZooKeeper/ZooKeeper的崩溃恢复)
 
 - [ZooKeeper 的数据写入](/系统设计/ZooKeeper/ZooKeeper的数据写入)
 
