@@ -145,3 +145,36 @@ UsernamePasswordToken token = new UsernamePasswordToken("admin", "123456");
 
 
 
+## 加密
+
+### 普通加密
+
+```java
+String admin = new Md5Hash("admin").toString();
+System.out.println(admin);
+
+// 输出结果 (结果是固定的)
+21232f297a57a5a743894a0e4a801fc3
+
+```
+
+
+
+### 加盐
+
+```java
+String password = "123456";
+String salt = new SecureRandomNumberGenerator().nextBytes().toString();
+System.out.println(salt);
+int times = 2;  // 加密次数：2
+String algorithmName = "md5";   // 加密算法
+String encodePassword = new SimpleHash(algorithmName, password, salt, times).toString();
+
+System.out.printf("原始密码是 %s , 盐是： %s, 运算次数是： %d, 运算出来的密文是：%s ",password,salt,times,encodePassword);
+
+// 输出结果(因为前面有随机的盐 结果不固定)
+tsLOopbc8vQq9BmxAf0+RA==
+原始密码是 123456 , 盐是： tsLOopbc8vQq9BmxAf0+RA==, 运算次数是： 2, 运算出来的密文是：aca2be776ac1f36dec09df28b4f17510 
+
+```
+

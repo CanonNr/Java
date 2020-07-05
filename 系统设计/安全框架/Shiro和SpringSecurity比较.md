@@ -1,4 +1,4 @@
-## **	Shiro**
+## Shiro
 
 首先 **Shiro** 较之 **Spring Security**，**Shiro** 在保持强大功能的同时，还在简单性和灵活性方面拥有巨大优势。
 

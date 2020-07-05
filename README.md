@@ -291,7 +291,14 @@
 
 ## 安全框架
 
+- **Shiro**
+
+  - [【Shiro】入门](/系统设计/安全框架/[Shiro]入门)
+  - [【Shiro】集成到SpringBoot](/系统设计/安全框架/[Shiro]集成到SpringBoot)
+
 - [Shiro 和 Spring Security 比较](/系统设计/安全框架/Shiro和SpringSecurity比较)
+
+  
 
 ## 大型网站架构
 
