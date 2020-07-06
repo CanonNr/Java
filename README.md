@@ -3,18 +3,13 @@
 ## 必会
 
 - [使用命令行执行JAVA程序](基础/必会/使用命令行执行JAVA程序)
-
 - [方法的重写与重载](基础/必会/方法的重写与重载)
-
 - [Java 的数据类型](基础/必会/Java的数据类型)
-
 - [堆和栈初识](基础/必会/堆和栈初识)
-
 - [日期时间](基础/必会/日期时间)
-
 - [字符串基本操作](基础/必会/字符串基本操作)
-
 - [枚举](基础/必会/枚举)
+- [什么是 JDBC](基础/必会/什么是JDBC)
 
 
 
@@ -24,7 +19,7 @@
 
 - [容器的两大阵营](基础/容器/容器的两大阵营)
 
-- comparable 和 Comparator的区别
+- Comparable 和 Comparator的区别
 
 - **List**
   - [ArrayList 与 LinkedList 区别](基础/容器/ArrayList与LinkedList区别)
@@ -39,21 +34,11 @@
 
   - [HashMap 的扩容操作](基础/容器/HashMap的扩容操作)
 
-  - HashMap 在 JDK 1.7 和 JDK 1.8 中的区别
-
   - [HashMap 为什么会在长度为 8 的时候链表转红黑树](基础/容器/HashMap为什么会在长度为8的时候链表转红黑树)
 
   - [HashMap 和 HashSet区别](基础/容器/HashMap和HashSet区别)
 
   - [HashMap、ConcurrentHashMap、Hashtable 的区别](基础/容器/HashMap、ConcurrentHashMap、Hashtable的区别.md)
-
-
-
-## JDBC
-
-- [什么是 JDBC](基础/JDBC/什么是JDBC)
-
-
 
 
 
@@ -120,6 +105,10 @@
 
 - [工厂模式](基础/设计模式/工厂模式)
 
+
+
+
+
 ------
 
 
@@ -129,9 +118,14 @@
 ## Spring
 
 - 基础
+
   - [依赖注入和控制反转](框架/Spring/依赖注入和控制反转)
+
+
 - 实例
+
   - [Spring入门程序](框架/Spring/Spring入门程序)
+
 - 源码分析
   - [Spring 源码分析（一） - 前言](框架/Spring/Spring源码分析01)
 
