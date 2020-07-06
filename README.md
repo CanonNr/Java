@@ -31,7 +31,6 @@
 
   - [ArrayList 和 Vector的区别](基础/容器/ArrayList和Vector的区别) 
 
-
 - **Map**
 
   - [HashMap 简述](基础/容器/HashMap简述)
@@ -204,19 +203,19 @@
 ## MyBatis
 
 - 基础
-    - [MyBatis的基本使用](框架/MyBatis/MyBatis的基本使用)
+  - [MyBatis的基本使用](框架/MyBatis/MyBatis的基本使用)
 
-    - [MyBatis最基本的CURD操作](框架/MyBatis/MyBatis最基本的CURD操作)
+  - [MyBatis最基本的CURD操作](框架/MyBatis/MyBatis最基本的CURD操作)
 
-    - [MyBatis中的占位符 - #{} 和 ${}](框架/MyBatis/MyBatis中的占位符)
+  - [MyBatis中的占位符 - #{} 和 ${}](框架/MyBatis/MyBatis中的占位符)
 
-    - [配合Log4J查看日志](框架/MyBatis/配合Log4J查看日志)
+  - [配合Log4J查看日志](框架/MyBatis/配合Log4J查看日志)
 
-    - [MyBatis一二级缓存](框架/MyBatis/MyBatis一二级缓存)
+  - [MyBatis一二级缓存](框架/MyBatis/MyBatis一二级缓存)
 
-    - [基础的联合查询](框架/MyBatis/基础的联合查询)
+  - [基础的联合查询](框架/MyBatis/基础的联合查询)
 
-    - [动态SQL](框架/MyBatis/动态SQL)
+  - [动态SQL](框架/MyBatis/动态SQL)
 
 ------
 
@@ -255,7 +254,6 @@
     - [MySQL调优总结](/数据库/MySQL/MySQL调优总结)
 
     - [事务隔离级别](/数据库/MySQL/事务隔离级别)
-
 - **MySQL的集群**
 
   - [Mysql 主从复制及原理](/数据库/MySQL/Mysql主从复制及原理)
@@ -266,6 +264,9 @@
 
   - [基于Docker 容器 MySQL 多主集群方案](/数据库/MySQL/基于Docker容器MySQL多主集群方案)
 
+- 其他
+    - [MySQL存储Emoji](/数据库/MySQL/MySQL存储Emoji )
+
 ---
 
 # 前端
@@ -273,8 +274,8 @@
 ## Vue.js
 
 - [环境安装](/前端/Vue.js/环境安装)
-- [创建一个新项目](/前端/Vue.js/创建一个新项目)
 
+- [创建一个新项目](/前端/Vue.js/创建一个新项目)
 
 
 ## React.js
@@ -315,6 +316,7 @@
 - **Shiro**
 
   - [【Shiro】入门](/系统设计/安全框架/[Shiro]入门)
+
   - [【Shiro】集成到SpringBoot](/系统设计/安全框架/[Shiro]集成到SpringBoot)
 
 - [Shiro 和 Spring Security 比较](/系统设计/安全框架/Shiro和SpringSecurity比较)
