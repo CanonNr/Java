@@ -219,7 +219,9 @@
   - [动态SQL](框架/MyBatis/动态SQL)
 
 - MyBatis Plus
-  - [MyBatis Plus](/框架/MyBatis/MyBatisPlus简述)
+  - [MyBatis Plus 简述](/框架/MyBatis/MyBatisPlus简述)
+  
+  - [MyBatis Plus 代码生成器](/框架/MyBatis/MyBatisPlus代码生成器)
 
 ------
 
