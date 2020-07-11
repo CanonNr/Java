@@ -325,6 +325,10 @@
 
   - [【Shiro】集成到SpringBoot](/系统设计/安全框架/[Shiro]集成到SpringBoot)
 
+  - [【Shiro】实现一个登录功能](/系统设计/安全框架/[Shiro]实现一个登录功能)
+
+  - [【Shiro】自定义Realm](/系统设计/安全框架/[Shiro]自定义Realm)
+
 - [Shiro 和 Spring Security 比较](/系统设计/安全框架/Shiro和SpringSecurity比较)
 
   
