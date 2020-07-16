@@ -317,19 +317,21 @@
 
 # 系统设计
 
-## 安全框架
+## 认证授权
 
 - **Shiro**
 
-  - [【Shiro】入门](/系统设计/安全框架/[Shiro]入门)
+  - [【Shiro】入门](/系统设计/认证授权/[Shiro]入门)
 
-  - [【Shiro】集成到SpringBoot](/系统设计/安全框架/[Shiro]集成到SpringBoot)
+  - [【Shiro】集成到SpringBoot](/系统设计/认证授权/[Shiro]集成到SpringBoot)
 
-  - [【Shiro】实现一个登录功能](/系统设计/安全框架/[Shiro]实现一个登录功能)
+  - [【Shiro】实现一个登录功能](/系统设计/认证授权/[Shiro]实现一个登录功能)
 
-  - [【Shiro】自定义Realm](/系统设计/安全框架/[Shiro]自定义Realm)
+  - [【Shiro】自定义Realm](/系统设计/认证授权/[Shiro]自定义Realm)
 
-- [Shiro 和 Spring Security 比较](/系统设计/安全框架/Shiro和SpringSecurity比较)
+  - [【Shiro】自定义过滤器](/系统设计/认证授权/[Shiro]自定义过滤器)
+
+- [Shiro 和 Spring Security 比较](/系统设计/认证授权/Shiro和SpringSecurity比较)
 
   
 
@@ -339,7 +341,6 @@
 - 扩容
 - 降级
 - RPC
-- 认证授权
 
 
 
@@ -377,6 +378,8 @@
 # 其他
 
 - [可能是对 CAP 理论最好解释了](/其他/可能是对CAP理论最好解释了)
+
 - [数据一致性](/其他/数据一致性)
+
 - [搭建一个Nginx+RTMP的流媒体服务器](/其他/搭建一个Nginx+RTMP的流媒体服务器)
 
