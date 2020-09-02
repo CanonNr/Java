@@ -1,9 +1,3 @@
-## HashMap 
-
-作为日常开发最常用的存储结构，前面对其特性做了大量介绍，所以本文不再多讲，主要对比与`HashTable`和`ConcurrentHashMap`区别
-
-
-
 ## HashTable
 
 ### 空键值
