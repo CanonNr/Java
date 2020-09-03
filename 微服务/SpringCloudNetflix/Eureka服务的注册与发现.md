@@ -38,9 +38,9 @@
 
 你也可以分别去AAA、BBB、CCC...店去注册
 
-## 基本使用
+## Eureka集群
 
-### 构建一个Spring Boot 项目
+### 构建Spring Boot 项目
 
 > 此处省略...
 
@@ -53,13 +53,6 @@
 <dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-    <version>2.2.5.RELEASE</version>
-</dependency>
-
-<!-- 客户端 -->
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     <version>2.2.5.RELEASE</version>
 </dependency>
 ```
@@ -120,7 +113,7 @@ public class EurekaMain7001 {
 
 > 启动两个 Spring Boot 项目即可
 
-### 查看Eureka面板
+### 查看面板
 
 访问`http://localhost:7001/` 或 `http://euk2.local:7002/`
 
@@ -159,3 +152,88 @@ public class EurekaMain7001 {
   > 服务端用`@EnableEurekaServer`
   >
   > 不要混淆了
+
+
+
+## 服务注册
+
+> 前面创建了一个mini的Eureka集群，并实现了两台机器的数据同步。
+>
+> 现在模拟一个集群的客户端，测试一下服务的注册与发现
+
+### 构建Spring Boot 项目
+
+> 此处省略...
+
+### 导入包
+
+```xml
+<!-- 客户端 -->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    <version>2.2.5.RELEASE</version>
+</dependency>
+```
+
+
+
+### 启动注解
+
+```java
+@SpringBootApplication
+public class UserMain9001 {
+    public static void main(String[] args) {
+        SpringApplication.run(UserMain9001.class, args);
+    }
+}
+```
+
+
+
+### 配置文件
+
+- 节点一
+
+  ```yaml
+  server:
+    port: 9001
+  eureka:
+    instance:
+      hostname: localhost
+      appname: localhost-user
+    client:
+      service-url:
+        defaultZone: http://euk1.local:7001/eureka
+  ```
+
+- 节点二
+
+  ```yaml
+  server:
+    port: 9002
+  eureka:
+    instance:
+      hostname: localhost
+      appname: localhost-user
+    client:
+      service-url:
+        defaultZone: http://euk1.local:7001/eureka
+  ```
+  
+
+![image-20200903232243784](../../image/image-20200903232243784.png)
+
+> 上面配置中虽然每个服务各自向一个Eureka注册，但是由于Eureka服务端各个节点是数据同步的所以都可以得到实现服务注册
+
+### 启动项目
+
+  > 启动两个 Spring Boot 项目即可
+
+### 查看面板
+
+访问`http://localhost:7001/` 或 `http://euk2.local:7002/`
+
+![image-20200903231958439](../../image/image-20200903231958439.png)
+
+一切正常
