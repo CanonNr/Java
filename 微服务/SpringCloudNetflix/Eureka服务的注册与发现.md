@@ -155,7 +155,7 @@ public class EurekaMain7001 {
 
 
 
-## 服务注册
+## 服务发现注册
 
 > 前面创建了一个mini的Eureka集群，并实现了两台机器的数据同步。
 >
@@ -237,3 +237,6 @@ public class UserMain9001 {
 ![image-20200903231958439](../../image/image-20200903231958439.png)
 
 一切正常
+
+## 
+
