@@ -1,0 +1,140 @@
+# Eureka服务的注册与发现
+
+## 概念
+
+> Eureka是基于REST（代表性状态转移）的服务，主要在AWS云中用于定位服务，以实现负载均衡和中间层服务器的故障转移。我们称此服务为Eureka服务器。Eureka还带有一个基于Java的客户端组件Eureka Client，它使与服务的交互变得更加容易。客户端还具有一个内置的负载平衡器，可以执行基本的循环负载平衡。在Netflix，更复杂的负载均衡器将Eureka包装起来，以基于流量，资源使用，错误条件等多种因素提供加权负载均衡，以提供出色的弹性。
+
+简单来说如本文标题：**注册** 与 **发现**
+
+![img](../../image/228BB198.jpg)
+
+在学习`Eureka`时普遍都会用**租房**来打比方，确实比较好理解。
+
+假如你有闲置的房子想租出去现有两个选择：
+
+1. 马路上抓个人就问，你租房吗？拎包入住南北通透
+2. 到公告栏、社区服务站、中介处登记，有人需要租房的时候自然就给你联系了
+
+假如你想租房现有两个选择：
+
+1. 到某小区挨家挨户的敲门，问有没有房子出租
+2. 到小区的公告栏、社区服务站、中介找房源
+
+想都不用想都选2啊
+
+这就是一个 **注册** 与 **发现** 的过程：
+
+此时**公告栏、社区服务站、中介**就好比接下来要学的`Eureka`
+
+房东把自己的房子注册到`Eureka`
+
+房客到`Eureka`去寻找自己心仪的房源
+
+> 如果想让更多的人看到你的招租信息就可以向多家中介或者多个公告栏去注册
+
+两种方式：
+
+假设你去同一家中介例如链家不同门店数据肯定是通的，你在AAA店注册了他会自动注册到BBB店或者CCC点...
+
+你也可以分别去AAA、BBB、CCC...店去注册
+
+## 基本使用
+
+### 构建一个Spring Boot 项目
+
+> 此处省略...
+
+
+
+### 导入包
+
+```xml
+<!-- 服务端 -->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    <version>2.2.5.RELEASE</version>
+</dependency>
+
+<!-- 客户端 -->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    <version>2.2.5.RELEASE</version>
+</dependency>
+```
+
+
+
+### 启动注解
+
+在`Spring Boot`启动类加上
+
+```java
+@EnableEurekaServer
+@SpringBootApplication
+public class EurekaMain7001 {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaMain7001.class, args);
+    }
+}
+```
+
+如果是**客户端**则将`@EnableEurekaServer` 改为 `@enableeurekaclient`
+
+### 配置文件
+
+1. 节点一
+
+   ```yaml
+   server:
+     port: 7001
+   
+   eureka:
+     instance:
+     	# 用来查找主机
+       hostname: localhost
+       # 表示分组,项目不同名字不同
+       appname: EurekaServer
+     client:
+       # 不向注册中心注册自己
+       register-with-eureka: false
+       # 是否同步信息 , 单节点无需同步 ,  集群必须为true
+       fetch-registry: true
+       service-url:
+         # 表示向谁注册
+         defaultZone: http://127.0.0.1:7002/eureka
+   ```
+
+2. 节点二
+
+   ```yaml
+   server:
+     port: 7002
+   
+   eureka:
+     instance:
+       # 用来查找主机
+       hostname: localhost
+       # 表示分组,项目不同名字不同
+       appname: EurekaServer
+     client:
+       # 不向注册中心注册自己
+       register-with-eureka: false
+       # 是否同步信息 , 单节点无需同步 ,  集群必须为true
+       fetch-registry: true
+       service-url:
+         # 表示向谁注册
+         defaultZone: http://127.0.0.1:7001/eureka
+   ```
+
+### 启动项目
+
+> 启动两个 Spring Boot 项目即可
+
+### 查看Eureka面板
+
+
+
+
+
