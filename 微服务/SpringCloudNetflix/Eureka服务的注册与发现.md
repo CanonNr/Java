@@ -88,46 +88,32 @@ public class EurekaMain7001 {
 
    ```yaml
    server:
-     # tomcat 的端口
-     # Eureka 基于HTTP Restful 
      port: 7001
    eureka:
      instance:
-     	# 用来查找主机
-       hostname: localhost
-       # 表示分组,项目不同名字不同
+       hostname: euk1.local
        appname: EurekaServer
      client:
-       # 不向注册中心注册自己
-       register-with-eureka: false
-       # 是否同步信息 , 单节点无需同步 ,  集群必须为true
+       register-with-eureka: true
        fetch-registry: true
        service-url:
-         # 表示向谁注册
-         defaultZone: http://127.0.0.1:7002/eureka
+         defaultZone: http://euk2.local:7002/eureka/
    ```
-
+   
 2. 节点二
 
    ```yaml
    server:
-     # tomcat 的端口
-     # Eureka 基于HTTP Restful 
      port: 7002
    eureka:
      instance:
-       # 用来查找主机
-       hostname: localhost
-       # 表示分组,项目不同名字不同
+       hostname: euk2.local
        appname: EurekaServer
      client:
-       # 不向注册中心注册自己
-       register-with-eureka: false
-       # 是否同步信息 , 单节点无需同步 ,  集群必须为true
+       register-with-eureka: true
        fetch-registry: true
        service-url:
-         # 表示向谁注册
-         defaultZone: http://127.0.0.1:7001/eureka
+         defaultZone: http://euk1.local:7002/eureka/
    ```
 
 ### 启动项目
@@ -136,7 +122,40 @@ public class EurekaMain7001 {
 
 ### 查看Eureka面板
 
+访问`http://localhost:7001/` 或 `http://euk2.local:7002/`
 
+接下来我以`http://localhost:7001/` 为例
 
+![image-20200903225418385](../../image/image-20200903225418385.png)
 
+![image-20200903225600649](../../image/image-20200903225600649.png)
 
+![image-20200903225637752](../../image/image-20200903225637752.png)
+
+![image-20200903225644806](../../image/image-20200903225644806.png)
+
+### 可能遇到的坑
+
+- **DS Replicas 没有注册的服务**
+
+  > 目前我遇到了两种可能：
+  >
+  > 1、Instance Info 中的 `ipAddr` 是不是你见过的或者 `ipconfig` 一下看看是不是本机正常的ip地址
+  >
+  > 。有可能识别到了虚拟网卡上，就需要手动去禁用虚拟网卡
+  >
+  > 2、**同一台服务器上，以不同的端口来搭建集群，ip 或者 主机名相同时，无法形成副本**，所以我在本地host修改了`euk1.local`、`euk2.local`
+
+  
+
+- **TomCat端口必须配置**
+
+  > `Eureka` 是基于HTTP 遵循 Restful 格式开发的，所以一定要配置端口
+
+- **`Eureka` 启动注解**
+
+  > 客户端用`@EnableEurekaClient`
+  >
+  > 服务端用`@EnableEurekaServer`
+  >
+  > 不要混淆了
