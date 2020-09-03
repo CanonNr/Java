@@ -88,8 +88,9 @@ public class EurekaMain7001 {
 
    ```yaml
    server:
+     # tomcat 的端口
+     # Eureka 基于HTTP Restful 
      port: 7001
-   
    eureka:
      instance:
      	# 用来查找主机
@@ -110,8 +111,9 @@ public class EurekaMain7001 {
 
    ```yaml
    server:
+     # tomcat 的端口
+     # Eureka 基于HTTP Restful 
      port: 7002
-   
    eureka:
      instance:
        # 用来查找主机
