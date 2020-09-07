@@ -342,7 +342,7 @@
 
 - ## ZooKeeper
 
-  - [ZooKeeper 入门](/系统设计系统设计/ZooKeeper/ZooKeeper入门)
+  - [ZooKeeper 入门](/系统设计/ZooKeeper/ZooKeeper入门)
 
   - [基于 Docker 的 ZooKeeper 集群](/系统设计/ZooKeeper/基于Docker的ZooKeeper集群)
 
