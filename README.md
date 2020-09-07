@@ -369,7 +369,7 @@
 
   - [Eureka - 服务的注册与发现](/微服务/SpringCloudNetflix/Eureka服务的注册与发现)
 
-  - [Rabbon - 实现负载均衡](/微服务/SpringCloudNetflix/Rabbon实现负载均衡)
+  - [Eureka - RestTemplate和Feign实现微服务调用](/微服务/SpringCloudNetflix/Eureka配合RestTemplate和Feign实现微服务调用)
 
   - [Hystrix - 的降级、隔离、熔断](/微服务/SpringCloudNetflix/Hystrix的降级、隔离、熔断)
 
