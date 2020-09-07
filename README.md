@@ -368,7 +368,10 @@
 - ## Spring Cloud Netflix
 
   - [Eureka - 服务的注册与发现](/微服务/SpringCloudNetflix/Eureka服务的注册与发现)
+
   - [Rabbon - 实现负载均衡](/微服务/SpringCloudNetflix/Rabbon实现负载均衡)
+
+  - [Hystrix - 的降级、隔离、熔断](/微服务/SpringCloudNetflix/Hystrix的降级、隔离、熔断)
 
 - ## Spring Cloud Config
 
