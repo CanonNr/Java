@@ -373,7 +373,7 @@
 
   - [Hystrix - 的降级、隔离、熔断](/微服务/SpringCloudNetflix/Hystrix的降级、隔离、熔断)
 
-  - [Hystrix - 隔离的两种方式：线程池、信号量](/微服务/SpringCloudNetflix/Hystrix的隔离方式)
+  - [Hystrix - 两种隔离方式：线程池、信号量](/微服务/SpringCloudNetflix/Hystrix的隔离方式)
 
 - ## Spring Cloud Config
 
