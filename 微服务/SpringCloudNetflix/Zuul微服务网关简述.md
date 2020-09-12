@@ -27,3 +27,118 @@
 
 ## 集成
 
+### 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+</dependency>
+```
+
+### 启动类
+
+添加启动类注释`@EnableZuulProxy`
+
+```java
+@SpringBootApplication
+@EnableZuulProxy  
+class ZuulMain {
+    public static void main(String[] args) {
+        SpringApplication.run(ZuulMain.class,args);
+    }
+}
+```
+
+### 配置
+
+```yaml
+server:
+  port: 7010
+spring:
+  profiles: node1
+  application:
+    name: ZuulServer
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    service-url:
+      defaultZone: http://euk1.local:7001/eureka/,http://euk2.local:7002/eureka/,http://euk3.local:7003/eureka/
+```
+
+> 需要配合`Eureka`并注册一些服务
+>
+> 我是做了一个三个节点的`Eureka`集群，且有一个`User`（三个节点分别是9001、9002、9003）服务注册到`Eureka`服务端
+
+### 访问
+
+访问 `http://localhost:7010/user/user`
+
+> `localhost:7010`:是当前项目的地址与端口
+>
+> 路径中第一个`user`是`Eureka`的服务名
+>
+> 第二个`user`是该提供者的`web`地址 
+
+![image-20200912212526945](../../image/image-20200912212526945.png)
+
+```java
+// 提供者的控制器代码
+@RestController
+public class TestController {
+    @Value("${server.port}")
+    public String port;
+
+    @RequestMapping("/user")
+    public CommonResult get(Integer id) throws InterruptedException {
+        GetUser user = new GetUser();
+        return new CommonResult(200,this.port,user.getUserById(id));
+    }
+}
+```
+
+- 访问返回结果
+
+```json
+{
+    "code": 200,
+    "message": "9003",
+    "data": {
+        "id": null,
+        "name": "周杰伦",
+        "sex": "男",
+        "age": 18
+    }
+}
+
+```
+
+> id为空，因为设置了请求参数
+>
+> 再访问下`http://localhost:7010/user/user?id=999`试试
+
+```json
+{
+"code": 200,
+"message": "9001",
+    "data": {
+        "id": 999,
+        "name": "周杰伦",
+        "sex": "男",
+        "age": 18
+    }
+}
+
+```
+
+> 其实不止是`id`改变了，`message`对应的是端口也变了，实在均衡还是生效的
+
+
+
+
+
