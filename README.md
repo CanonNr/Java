@@ -375,6 +375,8 @@
 
   - [Hystrix - 两种隔离方式：线程池、信号量](/微服务/SpringCloudNetflix/Hystrix的隔离方式)
 
+  - [Zuul - 微服务网关简述](/微服务/SpringCloudNetflix/Zuul微服务网关简述)
+
 - ## Spring Cloud Config
 
 - ## Spring Cloud Bus
