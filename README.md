@@ -385,6 +385,8 @@
 
   - [Zipkin - 链路追踪](/微服务/其他/Zipkin链路追踪)
 
+  - [Spring Boot Admin - 项目状态管理监控工具](/微服务/其他/SpringBootAdmin项目状态管理监控工具)
+
   
 
 ----
