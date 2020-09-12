@@ -381,6 +381,10 @@
 
 - ## Spring Cloud Bus
 
+- ## 其他
+
+  - [Zipkin - 链路追踪](/微服务/其他/Zipkin链路追踪)
+
   
 
 ----
