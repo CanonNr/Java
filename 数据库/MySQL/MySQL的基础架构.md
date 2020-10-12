@@ -1,6 +1,4 @@
-# 
-
-
+#  Mysql 基础架构
 
 ![img](../../image/1718b1b5ef3e58df)
 
