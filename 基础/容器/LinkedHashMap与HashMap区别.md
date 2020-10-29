@@ -24,7 +24,7 @@ HashMap是无序的，当我们希望有顺序地去存储key-value时，就需�
 
 
 
-```dart
+```java
 Map<String, String> hashMap = new HashMap<String, String>();
 hashMap.put("name1", "josan1");
 hashMap.put("name2", "josan2");
@@ -47,7 +47,7 @@ image.png
 
 同样的数据，我们再试试LinkedHashMap
 
-```dart
+```java
 Map<String, String> linkedHashMap = new LinkedHashMap<>();
 linkedHashMap.put("name1", "josan1");
 linkedHashMap.put("name2", "josan2");
@@ -76,7 +76,7 @@ image.png
 
 
 
-```dart
+```java
 LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<>();
 linkedHashMap.put("name", "josan");
 String name = linkedHashMap.get("name");
@@ -120,7 +120,7 @@ public LinkedHashMap() {
 
 
 
-```dart
+```java
 // 第三个参数用于指定accessOrder值
 Map<String, String> linkedHashMap = new LinkedHashMap<>(16, 0.75f, true);
 linkedHashMap.put("name1", "josan1");
@@ -159,7 +159,7 @@ image.png
 
 
 
-```dart
+```java
 /**
      * Called by superclass constructors and pseudoconstructors (clone,
      * readObject) before any entries are inserted into the map.  Initializes
@@ -179,7 +179,7 @@ void init() {
 
 
 
-```dart
+```java
 static class Entry<K,V> implements Map.Entry<K,V> {
     final K key;
     V value;
@@ -191,7 +191,7 @@ static class Entry<K,V> implements Map.Entry<K,V> {
 
 
 
-```cpp
+```java
 /**
      * LinkedHashMap entry.
      */
@@ -216,7 +216,7 @@ LinkedHashMap构造函数.png
 
 LinkedHashMap没有重写put方法，所以还是调用HashMap得到put方法，如下：
 
-```csharp
+```java
 public V put(K key, V value) {
     // 对key为null的处理
     if (key == null)
@@ -245,7 +245,7 @@ public V put(K key, V value) {
 
 我们看看LinkedHashMap的addEntry方法：
 
-```csharp
+```java
 void addEntry(int hash, K key, V value, int bucketIndex) {
     // 调用父类的addEntry，增加一个Entry到HashMap中
     super.addEntry(hash, key, value, bucketIndex);
@@ -260,7 +260,7 @@ void addEntry(int hash, K key, V value, int bucketIndex) {
 
 这里调用了父类HashMap的addEntry方法，如下：
 
-```csharp
+```java
 void addEntry(int hash, K key, V value, int bucketIndex) {
     // 扩容相关
     if ((size >= threshold) && (null != table[bucketIndex])) {
@@ -275,7 +275,7 @@ void addEntry(int hash, K key, V value, int bucketIndex) {
 
 前面是扩容相关的代码，在上一篇HashMap解析中已经讲过了。这里主要看createEntry方法，LinkedHashMap进行了重写。
 
-```csharp
+```java
 void createEntry(int hash, K key, V value, int bucketIndex) {
     HashMap.Entry<K,V> old = table[bucketIndex];
     // e就是新创建了Entry，会加入到table[bucketIndex]的表头
@@ -289,7 +289,7 @@ void createEntry(int hash, K key, V value, int bucketIndex) {
 
 我们来看看LinkedHashMap.Entry的addBefore方法：
 
-```cpp
+```java
 private void addBefore(Entry<K,V> existingEntry) {
     after  = existingEntry;
     before = existingEntry.before;
@@ -374,7 +374,7 @@ LinkedHashMap是遍历的双向链表，取得每一个Entry，然后重新计�
 
 前面分析的，主要是当前LinkedHashMap中不存在当前key时，新增Entry的情况。当key如果已经存在时，则进行更新Entry的value。就是HashMap的put方法中的如下代码：
 
-```csharp
+```java
 for (Entry<K,V> e = table[i]; e != null; e = e.next) {
     Object k;
     if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
@@ -389,7 +389,7 @@ for (Entry<K,V> e = table[i]; e != null; e = e.next) {
 
 主要看e.recordAccess(this)，这个方法跟访问顺序有关，而HashMap是无序的，所以在HashMap.Entry的recordAccess方法是空实现，但是LinkedHashMap是有序的,LinkedHashMap.Entry对recordAccess方法进行了重写。
 
-```csharp
+```java
 void recordAccess(HashMap<K,V> m) {
     LinkedHashMap<K,V> lm = (LinkedHashMap<K,V>)m;
     // 如果LinkedHashMap的accessOrder为true，则进行重排序
@@ -443,7 +443,7 @@ HashMap遍历.png
 很明显，这样取出来的Entry顺序肯定跟插入顺序不同了，既然LinkedHashMap是有序的，那么它是怎么实现的呢？
  先看看LinkedHashMap取遍历方式获取数据的代码：
 
-```dart
+```java
 Map<String, String> linkedHashMap = new LinkedHashMap<>();
 linkedHashMap.put("name1", "josan1");
 linkedHashMap.put("name2", "josan2");
@@ -461,7 +461,7 @@ while(iterator.hasNext()) {
 
 LinkedHashMap没有重写entrySet方法，我们先来看HashMap中的entrySet，如下：
 
-```dart
+```java
 public Set<Map.Entry<K,V>> entrySet() {
     return entrySet0();
 }
@@ -484,7 +484,7 @@ private final class EntrySet extends AbstractSet<Map.Entry<K,V>> {
 
 我们得到EntrySet会调用它的iterator方法去得到迭代器Iterator，从上面的代码也可以看到，iterator方法中直接调用了newEntryIterator方法并返回，而LinkedHashMap重写了该方法
 
-```dart
+```java
 Iterator<Map.Entry<K,V>> newEntryIterator() { 
     return new EntryIterator();
 }
@@ -548,7 +548,7 @@ nextEntry表示下一个应该返回的Entry，默认值是header.after，即双
 
 
 
-```csharp
+```java
 public Map.Entry<K,V> next() { 
     return nextEntry(); 
 }
@@ -558,7 +558,7 @@ public Map.Entry<K,V> next() {
 
 
 
-```csharp
+```java
 Entry<K,V> nextEntry() {
     // 保存应该返回的Entry
     Entry<K,V> e = lastReturned = nextEntry;
@@ -582,7 +582,7 @@ LinkedHashMap遍历.png
 
 LinkedHashMap没有提供remove方法，所以调用的是HashMap的remove方法，实现如下：
 
-```csharp
+```java
 public V remove(Object key) {
     Entry<K,V> e = removeEntryForKey(key);
     return (e == null ? null : e.value);
@@ -621,7 +621,7 @@ final Entry<K,V> removeEntryForKey(Object key) {
 
 在HashMap.Entry中recordRemoval方法是空实现，但是LinkedHashMap.Entry对其进行了重写，如下：
 
-```csharp
+```java
 void recordRemoval(HashMap<K,V> m) {
     remove();
 }
@@ -654,7 +654,7 @@ LinkedHashMap结构.png
 
 
 
-```cpp
+```java
 public class LruCache<K, V> {
     private final LinkedHashMap<K, V> map;
     public LruCache(int maxSize) {
@@ -672,7 +672,7 @@ public class LruCache<K, V> {
 
 
 
-```csharp
+```java
 public final V put(K key, V value) {
     if (key == null || value == null) {
         throw new NullPointerException("key == null || value == null");
@@ -704,7 +704,7 @@ public final V put(K key, V value) {
 
 
 
-```csharp
+```java
 /**
      * Remove the eldest entries until the total of remaining entries is at or
      * below the requested size.
