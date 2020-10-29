@@ -65,7 +65,7 @@
 
   - [synchronized](基础/高并发与多线程/synchronized)
 
-  - [volatile](基础/高并发与多线程/volatile)
+  - [volatile](基础/高并发与多线程/Volatile)
 
   - [CAS 简述](基础/高并发与多线程/CAS简述)
 
