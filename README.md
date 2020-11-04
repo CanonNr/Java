@@ -322,6 +322,10 @@
 
   - [JMS和AMQP](/消息队列/基础/JMS和AMQP)
 
+- ## RabbitMQ
+  - [整合 SpringBoot 使用](/消息队列/RabbitMQ/整合SpringBoot使用)
+- ## RocketMQ
+
 ----
 
 # 系统设计
