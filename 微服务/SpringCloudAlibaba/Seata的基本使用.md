@@ -7,8 +7,6 @@
 
 [Seata](https://github.com/seata/seata) 是 阿里巴巴 开源的 分布式事务中间件，以 高效 并且对业务 0 侵入 的方式，解决 微服务 场景下面临的分布式事务问题。
 
-
-
 ## 准备工作
 
 在运行此示例之前，你需要先完成如下几步准备工作：
@@ -30,7 +28,7 @@
 
 将 `account-server`、`order-service`、`storage-service` 这三个应用中的 resources 目录下的 `application.properties` 文件中的如下配置修改成你运行环境中的实际配置。
 
-```
+```properties
 mysql.server.ip=your mysql server ip address
 mysql.server.port=your mysql server listening port
 mysql.db.name=your database name for test
@@ -44,7 +42,7 @@ mysql.user.password=your mysql server password
 
 [Seata AT 模式]() 需要使用到 undo_log 表。
 
-``` $sql
+``` sql
 -- 注意此处0.3.0+ 增加唯一索引 ux_undo_log
 CREATE TABLE `undo_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -63,7 +61,7 @@ CREATE TABLE `undo_log` (
 
 ### 创建 示例中 业务所需要的数据库表
 
-```$sql
+```sql
 DROP TABLE IF EXISTS `storage_tbl`;
 CREATE TABLE `storage_tbl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -101,7 +99,7 @@ CREATE TABLE `account_tbl` (
 
 进入解压之后的 bin 目录，执行如下命令来启动, 所有启动参数为可选项。
 
-```$shell
+```shell
 sh seata-server.sh -p $LISTEN_PORT -m $MODE(file or db) -h $HOST -e $ENV
 ```
 -p seata-server 监听服务端口号   
@@ -111,7 +109,7 @@ lock_table](https://github.com/seata/seata/blob/develop/server/src/main/resource
 -e 用于解决多环境配置中心隔离问题   
 在这个示例中，采用如下命令来启动 Seata Server
 
-```$shell
+```shell
 sh seata-server.sh -p 8091 -m file
 ```
 

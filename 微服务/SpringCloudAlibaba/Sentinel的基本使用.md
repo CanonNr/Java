@@ -25,22 +25,22 @@
 ```
 
 2. 接入限流埋点
-	- HTTP 埋点
+  - HTTP 埋点
 
-		Sentinel starter 默认为所有的 HTTP 服务提供了限流埋点，如果只想对 HTTP 服务进行限流，那么只需要引入依赖，无需修改代码。
-	- 自定义埋点
+  	Sentinel starter 默认为所有的 HTTP 服务提供了限流埋点，如果只想对 HTTP 服务进行限流，那么只需要引入依赖，无需修改代码。
+  - 自定义埋点
 
-		如果需要对某个特定的方法进行限流或降级，可以通过 `@SentinelResource` 注解来完成限流的埋点，示例代码如下：
+    如果需要对某个特定的方法进行限流或降级，可以通过 `@SentinelResource` 注解来完成限流的埋点，示例代码如下：
 
-		```java
-		@SentinelResource("resource")
-		public String hello() {
-		    return "Hello";
-		}
-		```
-		
-		当然也可以通过原始的 `SphU.entry(xxx)` 方法进行埋点，可以参见 [Sentinel 文档](https://github.com/alibaba/Sentinel/wiki/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8#%E5%AE%9A%E4%B9%89%E8%B5%84%E6%BA%90)。
-	
+    ```java
+    @SentinelResource("resource")
+    public String hello() {
+        return "Hello";
+    }
+    ```
+
+    当然也可以通过原始的 `SphU.entry(xxx)` 方法进行埋点，可以参见 [Sentinel 文档](https://github.com/alibaba/Sentinel/wiki/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8#%E5%AE%9A%E4%B9%89%E8%B5%84%E6%BA%90)。
+
 3. 配置限流规则
 	
 	Sentinel 提供了两种配置限流规则的方式：代码配置 和 控制台配置。本示例使用的方式为通过控制台配置。
@@ -75,7 +75,7 @@
 
 1. 增加配置，在应用的 /src/main/resources/application.properties 中添加基本配置信息
 	
-    ```
+    ```properties
 	spring.application.name=sentinel-example
 	server.port=18083
 	spring.cloud.sentinel.transport.dashboard=localhost:8080

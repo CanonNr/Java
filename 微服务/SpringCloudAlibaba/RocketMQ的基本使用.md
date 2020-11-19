@@ -24,10 +24,6 @@ Spring Cloud Stream 内部有两个概念：Binder 和 Binding。
 
 Binding 在消息中间件与应用程序提供的 Provider 和 Consumer 之间提供了一个桥梁，实现了开发者只需使用应用程序的 Provider 或 Consumer 生产或消费数据即可，屏蔽了开发者与底层消息中间件的接触。
 
-下图是 Spring Cloud Stream 的架构设计。
-
-![](../../image/SCSt-overview.png)
-
 ## 示例
 
 ### 如何接入

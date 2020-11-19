@@ -14,27 +14,33 @@
 
 1. 首先，修改 pom.xml 文件，引入 Nacos Config Starter。
 
-	    <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
+	```xml
+   <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+	 </dependency>
+	```
 	
 2. 在应用的 /src/main/resources/bootstrap.properties 配置文件中配置 Nacos Config 元数据
 	
-        spring.application.name=nacos-config-example
-        spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+    ```properties
+    spring.application.name=nacos-config-example
+	spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+	```
 	
-3. 完成上述两步后，应用会从 Nacos Config 中获取相应的配置，并添加在 Spring Environment 的 PropertySources 中。这里我们使用 @Value 注解来将对应的配置注入到 SampleController 的 userName 和 age 字段，并添加 @RefreshScope 打开动态刷新功能
+3. 完成上述两步后，应用会从 Nacos Config 中获取相应的配置，并添加在 Spring Environment 的 PropertySources 中。这里我们使用 @Value 注解来将对应的配置注入到 SampleController 的 userName 和 age 字段，并添加 `@RefreshScope` 打开动态刷新功能
 		
-		@RefreshScope
-		class SampleController {
-	
-    		@Value("${user.name}")
-    		String userName;
 		
-    		@Value("${user.age}")
-    		int age;
-		}
+	```java
+	@RefreshScope
+    class SampleController {	
+    	@Value("${user.name}")
+		String userName;
+    
+    	@Value("${user.age}")
+		int age;
+	}
+	```
 
 ### 启动 Nacos Server 并添加配置
 
@@ -56,22 +62,25 @@
 	
 	添加的配置的详情如下
 	
-		dataId 为 nacos-config-example.properties
-		group 为 DEFAULT_GROUP
-		
-		内容如下
-		
-			user.id=1
-			user.name=james
-			user.age=17	
+	dataId 为 nacos-config-example.properties
+	group 为 DEFAULT_GROUP
+	
+	```properties
+	# 内容如下
+	user.id=1
+	user.name=james
+	user.age=17	
+	```
 
 ### 应用启动
 
 1. 增加配置，在应用的 /src/main/resources/application.properties 中添加基本配置信息
 	
-        server.port=18084
-        management.endpoints.web.exposure.include=*
-
+    ```properties
+    server.port=18084
+management.endpoints.web.exposure.include=*
+	```
+	
 2. 启动应用，支持 IDE 直接启动和编译打包后启动。
 
 	1. IDE直接启动：找到主类 `Application`，执行 main 方法启动应用。
@@ -116,7 +125,7 @@ Nacos Client 从 Nacos Server 端获取数据时，调用的是此接口 `Config
 
 * `spring.profiles.active` 即为当前环境对应的 profile，详情可以参考 [Spring Boot文档](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-profiles.html#boot-features-profiles)
 
-	**注意，当 activeprofile 为空时，对应的连接符 `-` 也将不存在，dataId 的拼接格式变成 `${prefix}`.`${file-extension}`**
+**注意，当 activeprofile 为空时，对应的连接符 `-` 也将不存在，dataId 的拼接格式变成 `${prefix}`.`${file-extension}`**
 
 * `file-extension` 为配置内容的数据格式，可以通过配置项 `spring.cloud.nacos.config.file-extension`来配置。
 目前只支持 `properties` 类型。

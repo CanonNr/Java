@@ -399,17 +399,15 @@
   - [SpringCloudConfig - 分布式微服务配置中心](/微服务/SpringCloudConfig/SpringCloudConfig分布式微服务配置中心)
 
 - ## Spring Cloud Alibaba
+    - [Nacos Discovery 的基本使用](/微服务/SpringCloudAlibaba/NacosDiscovery的基本使用)
 
+    - [Nacos Config 的基本使用](/微服务/SpringCloudAlibaba/NacosConfig的基本使用)
 
-  - [Nacos Discovery 的基本使用](/微服务/SpringCloudAlibaba/NacosDiscovery的基本使用)
+    - [Sentinel 的基本使用](/微服务/SpringCloudAlibaba/Sentinel的基本使用)
 
-  - [Nacos Config 的基本使用](/微服务/SpringCloudAlibaba/NacosConfig的基本使用)
+    - [RocketMQ 的基本使用](/微服务/SpringCloudAlibaba/RocketMQ的基本使用)
 
-  - [Sentinel 的基本使用](/微服务/SpringCloudAlibaba/Sentinel的基本使用)
-
-  - [RocketMQ 的基本使用](/微服务/SpringCloudAlibaba/RocketMQ的基本使用)
-
-  - [Seata 的基本使用](/微服务/SpringCloudAlibaba/Seata的基本使用)
+    - [Seata 的基本使用](/微服务/SpringCloudAlibaba/Seata的基本使用)
 
 
 - ## Spring Cloud Bus
@@ -428,15 +426,20 @@
 
 - ## LeetCode
 
+  - [283. 移动零](/数据结构与算法/LeetCode/283.移动零)
+
   - [791. 自定义字符串排序](/数据结构与算法/LeetCode/791.自定义字符串排序)
 
-  - [283. 移动零](/数据结构与算法/LeetCode/283.移动零)
+
 ---
 
 # 其他
 
 - [可能是对 CAP 理论最好解释了](/其他/可能是对CAP理论最好解释了)
+
 - [数据一致性](/其他/数据一致性)
+
 - [搭建一个Nginx+RTMP的流媒体服务器](/其他/搭建一个Nginx+RTMP的流媒体服务器)
+
 - [[go] Docker Api 编程](/其他/[go]DockerApi编程)
 

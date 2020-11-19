@@ -14,10 +14,12 @@
 
 1. 首先，修改 pom.xml 文件，引入 Nacos Discovery Starter。
 
-	    <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
+	```XML
+   <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+	 </dependency>
+	```
 	
 2. 在应用的 /src/main/resources/application.properties 配置文件中配置 Nacos Server 地址
 	
@@ -25,22 +27,25 @@
 	
 3. 使用 @EnableDiscoveryClient 注解开启服务注册与发现功能
 		
-		@SpringBootApplication
-		@EnableDiscoveryClient
-		public class ProviderApplication {
-
-			public static void main(String[] args) {
-				SpringApplication.run(ProviderApplication.class, args);
-			}
+		
 	
-			@RestController
-			class EchoController {
-				@GetMapping(value = "/echo/{string}")
-				public String echo(@PathVariable String string) {
-						return string;
-				}
+	```java
+@SpringBootApplication
+	@EnableDiscoveryClient
+	public class ProviderApplication {
+		public static void main(String[] args) {
+			SpringApplication.run(ProviderApplication.class, args);
+		}
+	
+		@RestController
+		class EchoController {
+			@GetMapping(value = "/echo/{string}")
+			public String echo(@PathVariable String string) {
+					return string;
 			}
 		}
+	}
+	```
 
 ### 启动 Nacos Server
 
@@ -91,19 +96,23 @@ Nacos Discovery Starter 默认集成了 Ribbon ，所以对于使用了 Ribbon �
 
 1. 添加 @LoadBlanced 注解，使得 RestTemplate 接入 Ribbon 
 
-	    @Bean
-	    @LoadBalanced
-	    public RestTemplate restTemplate() {
-	        return new RestTemplate();
-	    }
+   ```java
+   @Bean
+   @LoadBalanced
+   public RestTemplate restTemplate() {
+       return new RestTemplate();
+   }
+   ```
 
 1. FeignClient 已经默认集成了 Ribbon ，此处演示如何配置一个 FeignClient。
 
-	    @FeignClient(name = "service-provider")
-	    public interface EchoService {
-	        @GetMapping(value = "/echo/{str}")
-	        String echo(@PathVariable("str") String str);
-	    }
+	```java
+	@FeignClient(name = "service-provider")
+	public interface EchoService {
+	    @GetMapping(value = "/echo/{str}")
+	    String echo(@PathVariable("str") String str);
+	}
+	```
 	
 	使用 @FeignClient 注解将 EchoService 这个接口包装成一个 FeignClient，属性 name 对应服务名 service-provider。
 	
@@ -111,23 +120,26 @@ Nacos Discovery Starter 默认集成了 Ribbon ，所以对于使用了 Ribbon �
 	
 1. 完成以上配置后，将两者自动注入到 TestController 中。
 
-		@RestController
-		public class TestController {
-		
-		    @Autowired
-		    private RestTemplate restTemplate;
-		    @Autowired
-		    private EchoService echoService;
-		
-		    @GetMapping(value = "/echo-rest/{str}")
-		    public String rest(@PathVariable String str) {
-		        return restTemplate.getForObject("http://service-provider/echo/" + str, String.class);
-		    }
-		    @GetMapping(value = "/echo-feign/{str}")
-		    public String feign(@PathVariable String str) {
-		        return echoService.echo(str);
-		    }
-		}
+    
+    	
+    ```java
+    @RestController
+    public class TestController {    
+    	@Autowired
+        private RestTemplate restTemplate;
+        @Autowired
+        private EchoService echoService;
+    
+        @GetMapping(value = "/echo-rest/{str}")
+        public String rest(@PathVariable String str) {
+            return restTemplate.getForObject("http://service-provider/echo/" + str, String.class);
+        }
+        @GetMapping(value = "/echo-feign/{str}")
+        public String feign(@PathVariable String str) {
+            return echoService.echo(str);
+        }
+    }
+    ```
 
 1. 配置必要的配置，在 nacos-discovery-consumer-example 项目的 /src/main/resources/application.properties 中添加基本配置信息
 
