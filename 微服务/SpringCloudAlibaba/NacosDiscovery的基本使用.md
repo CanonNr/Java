@@ -22,28 +22,28 @@
 	```
 	
 2. 在应用的 /src/main/resources/application.properties 配置文件中配置 Nacos Server 地址
-	
-		spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
-	
+
+   ```properties
+   spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+   ```
+
 3. 使用 @EnableDiscoveryClient 注解开启服务注册与发现功能
-		
-		
 	
 	```java
-@SpringBootApplication
+	@SpringBootApplication
 	@EnableDiscoveryClient
-	public class ProviderApplication {
-		public static void main(String[] args) {
-			SpringApplication.run(ProviderApplication.class, args);
-		}
+public class ProviderApplication {
+	    public static void main(String[] args) {
+	        SpringApplication.run(ProviderApplication.class, args);
+	    }
 	
-		@RestController
-		class EchoController {
-			@GetMapping(value = "/echo/{string}")
-			public String echo(@PathVariable String string) {
-					return string;
-			}
-		}
+	    @RestController
+	    class EchoController {
+	        @GetMapping(value = "/echo/{string}")
+	        public String echo(@PathVariable String string) {
+	            return string;
+	        }
+	    }
 	}
 	```
 
@@ -120,10 +120,8 @@ Nacos Discovery Starter 默认集成了 Ribbon ，所以对于使用了 Ribbon �
 	
 1. 完成以上配置后，将两者自动注入到 TestController 中。
 
-    
-    	
-    ```java
-    @RestController
+   ```java
+   @RestController
     public class TestController {    
     	@Autowired
         private RestTemplate restTemplate;
@@ -140,11 +138,13 @@ Nacos Discovery Starter 默认集成了 Ribbon ，所以对于使用了 Ribbon �
         }
     }
     ```
-
+    
 1. 配置必要的配置，在 nacos-discovery-consumer-example 项目的 /src/main/resources/application.properties 中添加基本配置信息
 
-		spring.application.name=service-consumer
-		server.port=18083
+    ```properties
+    spring.application.name=service-consumer
+    server.port=18083
+    ```
 
 1. 启动应用，支持 IDE 直接启动和编译打包后启动。
 

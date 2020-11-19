@@ -32,19 +32,19 @@
     - **认证授权**
     
     - **分布式存储**
-    - **FastDFS**
-      
-    - **Hadoop Distributed File System**
-      
+      - **FastDFS**
+    
+      - **Hadoop Distributed File System**
+    
     - **分布式协调任务** 
       - **ZooKeeper**
       
       - **TBSchedule**
       
     - **定时任务**
-    - **Quartz**
+      - **Quartz**
       - **Elastic-Job**
-      
+    
     - **搜索引擎**
     
       - **Elasticsearch**

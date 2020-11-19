@@ -29,17 +29,15 @@
 	```
 	
 3. 完成上述两步后，应用会从 Nacos Config 中获取相应的配置，并添加在 Spring Environment 的 PropertySources 中。这里我们使用 @Value 注解来将对应的配置注入到 SampleController 的 userName 和 age 字段，并添加 `@RefreshScope` 打开动态刷新功能
-		
-		
 	```java
 	@RefreshScope
-    class SampleController {	
-    	@Value("${user.name}")
-		String userName;
-    
-    	@Value("${user.age}")
-		int age;
-	}
+	class SampleController {	
+	    @Value("${user.name}")
+       String userName;
+   
+	    @Value("${user.age}")
+       int age;
+   }
 	```
 
 ### 启动 Nacos Server 并添加配置
@@ -75,16 +73,16 @@
 ### 应用启动
 
 1. 增加配置，在应用的 /src/main/resources/application.properties 中添加基本配置信息
-	
+
     ```properties
     server.port=18084
-management.endpoints.web.exposure.include=*
-	```
-	
+    management.endpoints.web.exposure.include=*
+    ```
+
 2. 启动应用，支持 IDE 直接启动和编译打包后启动。
 
-	1. IDE直接启动：找到主类 `Application`，执行 main 方法启动应用。
-	2. 打包编译后启动：首先执行 `mvn clean package` 将工程编译打包，然后执行 `java -jar nacos-config-example.jar`启动应用。
+  1. IDE直接启动：找到主类 `Application`，执行 main 方法启动应用。
+  2. 打包编译后启动：首先执行 `mvn clean package` 将工程编译打包，然后执行 `java -jar nacos-config-example.jar`启动应用。
 
 ### 验证
 
