@@ -238,50 +238,43 @@
 # 数据库
 
 - ## MySQL
+    - [MyISAM 和 InnoDB的区别](/数据库/MySQL/MyISAM和InnoDB的区别)
 
-    - **MySQL 基础及优化**
-        - [MyISAM 和 InnoDB的区别](/数据库/MySQL/MyISAM和InnoDB的区别)
+    - [MySQL 的基础架构](/数据库/MySQL/MySQL的基础架构)
 
-        - [MySQL 的基础架构](/数据库/MySQL/MySQL的基础架构)
+    - [聚簇索引和非聚簇索引](/数据库/MySQL/聚簇索引和非聚簇索引)
 
-        - [聚簇索引和非聚簇索引](/数据库/MySQL/聚簇索引和非聚簇索引)
+    - [数据库的B+树](/数据库/MySQL/数据库的B+树)
 
-        - [数据库的B+树](/数据库/MySQL/数据库的B+树)
+    - [数据类型 - 时间](/数据库/MySQL/数据类型-时间)
 
-        - [数据类型 - 时间](/数据库/MySQL/数据类型-时间)
+    - [关联查询 - join](/数据库/MySQL/关联查询-join)
 
-        - [关联查询 - join](/数据库/MySQL/关联查询-join)
+    - [回表、索引覆盖、索引下推、最左匹配](/数据库/MySQL/回表、索引覆盖、索引下推、最左匹配)
 
-        - [回表、索引覆盖、索引下推、最左匹配](/数据库/MySQL/回表、索引覆盖、索引下推、最左匹配)
+    - [索引排序](/数据库/MySQL/索引排序)
 
-        - [MySQL索引方法](/数据库/MySQL/MySQL索引方法)
+    - [Explain 的用法](/数据库/MySQL/EXPLAIN的用法)
 
-        - [索引排序](/数据库/MySQL/索引排序)
+    - [临时表](/数据库/MySQL/临时表)
 
-        - [Explain 的用法](/数据库/MySQL/EXPLAIN的用法)
+    - [MySQL调优总结](/数据库/MySQL/MySQL调优总结)
 
-        - [分解查询](/数据库/MySQL/分解查询)
+    - [事务隔离级别](/数据库/MySQL/事务隔离级别)
 
-        - [临时表](/数据库/MySQL/临时表)
+    - [Mysql 主从复制及原理](/数据库/MySQL/Mysql主从复制及原理)
 
-        - [MySQL调优总结](/数据库/MySQL/MySQL调优总结)
+    - [基于Docker 创建多个 MySQL 节点](/数据库/MySQL/基于Docker创建多个MySQL节点)
 
-        - [事务隔离级别](/数据库/MySQL/事务隔离级别)
+    - [基于Docker 容器下配置多节点的 MySQL 主从复制](/数据库/MySQL/基于Docker容器下配置多节点的MySQL主从复制)
 
-    - **MySQL的集群**
-    
-      - [Mysql 主从复制及原理](/数据库/MySQL/Mysql主从复制及原理)
-    
-      - [基于Docker 创建多个 MySQL 节点](/数据库/MySQL/基于Docker创建多个MySQL节点)
-    
-      - [基于Docker 容器下配置多节点的 MySQL 主从复制](/数据库/MySQL/基于Docker容器下配置多节点的MySQL主从复制)
-    
-      - [基于Docker 容器 MySQL 多主集群方案](/数据库/MySQL/基于Docker容器MySQL多主集群方案)
-    
-    - 其他
-        - [MySQL存储Emoji](/数据库/MySQL/MySQL存储Emoji)
+    - [基于Docker 容器 MySQL 多主集群方案](/数据库/MySQL/基于Docker容器MySQL多主集群方案)
 
-        - [`where 1=1`是否存在性能问题](/数据库/MySQL/WHERE1=1)
+    - [Sharding JDBC 分库分表](/数据库/MySQL/ShardingJDBC分库分表)
+
+    - [MySQL存储Emoji](/数据库/MySQL/MySQL存储Emoji)
+
+    - [`where 1=1`是否存在性能问题](/数据库/MySQL/WHERE1=1)
 
 ---
 
